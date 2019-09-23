@@ -1,137 +1,133 @@
 #! python3
 from tkinter import *
 from tkinter import ttk
+from time import perf_counter, sleep
 
-import os
 import random
-
-from collections import OrderedDict
+import os
 
 from common import ExperimentFrame, InstructionsFrame
 from gui import GUI
-from constants import CURRENCY, WIN, COUNTRY
-
-
-################################################################################
-# TEXTS
-
-optionsChina = ((12, 13, 14, 15, 16),
-                (30, 40, 50, 60, 70),
-                (30, 30, 30, 30, 30))
-optionsCzechia = ((42, 44, 46, 48, 50),
-                  (30, 40, 50, 60, 70),
-                  (100, 100, 100, 100, 100))
-
-instructions = """
-In the following task, you will have to make 5 separate decisions between two alternatives each. First alternative always represents a sure payoff, second alternative represents a lottery. The % number represents the probability that you win and your payoff will then be {} {}. If you do not win, your payoff will be 0 {}. The payoff probabilities vary across the decisions so that the riskier alternative (i.e. lottery) is increasingly attractive with each row. 
-
-After you have completed this task, your payoff will be determined. For this, one of your decisions will be selected at random (with equal probabilities) and you will get a certain payoff or the corresponding lottery will be played (based on whether you have chosen a sure payoff or a lottery). Thus, although you will have made five choices, only one eventually determines your payoff.
-
-Please select in each row whether you prefer a sure payoff or a lottery.
-"""
-
-wintext = """
-Your decision number {} was selected randomly.
-
-{}
-"""
-
-sure = "Because you have chosen a sure payoff, you win {} {}."
-risky = "Because you have chosen a lottery, the draw has taken place and you win {} {}."
 
 
 ################################################################################
 
+#introText = "ted se budete ucastnit loterie"
+
+instructions = """V této úloze budete házet kostkou, dokud vám nepadne liché číslo.
+Jakmile padne liché číslo, úloha končí a vám zůstává vaše dosažená výhra.
+Vaše počáteční výhra je {} Kč a tato výhra se zdvojnásobí pokaždě, když vám padne sudé číslo.
+Maximálně můžete takto vyhrát {} Kč.
+"""
+
+winningText = "Vaše současná výhra je: {} Kč"
+
+losingText = "Tímto úloha končí. Vyhráli jste: {} Kč"
 
 class Lottery(ExperimentFrame):
     def __init__(self, root):
         super().__init__(root)
 
-        if COUNTRY == "CHINA":
-            options = optionsChina
-        elif COUNTRY == "CZECHIA":
-            options = optionsCzechia
-        self.options = options
-           
-        self.text = Text(self, font = "helvetica 15", relief = "flat", background = "white", height = 14,
-                         wrap = "word", highlightbackground = "white", width = 90)
-        self.text.grid(row = 1, column = 0, columnspan = 4)
-        self.text.insert("1.0", instructions.format(options[2][0], CURRENCY, CURRENCY))
-        self.text.config(state = "disabled")
+        #######################
+        # adjustable parameters
+        self.displayNum = self.createDots # self.createDots or self.createText
+        self.fakeRolling = True # False for testing
+        self.diesize = 240
+        self.startingReward = 5
+        self.maximumReward = 320
+        #######################
 
-        self.leftLabel = ttk.Label(self, text = "Sure payoff", font = "helvetica 15", background = "white")
-        self.leftLabel.grid(row = 3, column = 1, pady = 10)
-        self.rightLabel = ttk.Label(self, text = "Lottery", font = "helvetica 15", background = "white")
-        self.rightLabel.grid(row = 3, column = 2, pady = 10)
+        self.width = self.root.screenwidth
+        self.height = self.root.screenheight
 
-        self.variables = OrderedDict()
-        self.rbuttonsL = {}
-        self.rbuttonsR = {}
-        for i in range(5):
-            row = i + 4
-            self.variables[i] = StringVar()
-            self.rbuttonsL[i] = ttk.Radiobutton(self, text = " {} {}".format(options[0][i], CURRENCY),
-                                                variable = self.variables[i], value = str(i+1) + "sure",
-                                                command = self.checkAllFilled)
-            self.rbuttonsL[i].grid(column = 1, row = row, sticky = W, padx = 30)
-            self.rbuttonsR[i] = ttk.Radiobutton(self, variable = self.variables[i], value = str(i+1) + "risky",
-                                                text = " {}% {} {}".format(options[1][i], options[2][i], CURRENCY),
-                                                command = self.checkAllFilled)
-            self.rbuttonsR[i].grid(column = 2, row = row, sticky = W, padx = 30)
+        self.file.write("Lottery\n")
 
-        ttk.Style().configure("TRadiobutton", background = "white", font = "helvetica 15")
+        self.upperText = Text(self, height = 5, width = 80, relief = "flat", font = "helvetica 15",
+                              wrap = "word")
+        self.upperText.insert("1.0", instructions.format(self.startingReward, self.maximumReward))
+        self.upperText["state"] = "disabled"
+        self.die = Canvas(self, highlightbackground = "white", highlightcolor = "white",
+                          background = "white", width = self.diesize, height = self.diesize)
+        self.bottomText = Text(self, height = 3, width = 80, relief = "flat", font = "helvetica 15",
+                               wrap = "word")
+        self.currentReward = self.startingReward
+        self.bottomText.insert("1.0", winningText.format(self.currentReward))
+        self.bottomText["state"] = "disabled"
         ttk.Style().configure("TButton", font = "helvetica 15")
+        self.next = ttk.Button(self, text = "Hodit kostkou", command = self.roll)
+         
+        self.upperText.grid(column = 1, row = 1)
+        self.die.grid(column = 1, row = 3, pady = 40)
+        self.bottomText.grid(column = 1, row = 4)
+        self.next.grid(row = 5, column = 1)
 
-        self.columnconfigure(0, weight = 1)
-        self.columnconfigure(3, weight = 1)
-        self.rowconfigure(0, weight = 1)
+        self["highlightbackground"] = "white"
+        self.columnconfigure(1, weight = 1)
+        self.rowconfigure(0, weight = 3)
         self.rowconfigure(1, weight = 1)
-        self.rowconfigure(9, weight = 1)
-        self.rowconfigure(10, weight = 1)
+        self.rowconfigure(2, weight = 1)
+        self.rowconfigure(3, weight = 1)
+        self.rowconfigure(4, weight = 1)
+        self.rowconfigure(5, weight = 1)
+        self.rowconfigure(6, weight = 4)        
 
-        self.next = ttk.Button(self, text = "Continue", command = self.nextFun)
-        self.next.grid(row = 9, column = 0, columnspan = 4, pady = 15)
+
+    def roll(self):
         self.next["state"] = "disabled"
+        self.die.create_rectangle((5, 5, self.diesize - 5, self.diesize - 5),
+                                  fill = "white", tag = "die", outline = "black", width = 5)
+        # fake rolling
+        if self.fakeRolling:
+            for roll in range(random.randint(4,6)):         
+                self.displayNum(self.diesize/2, self.diesize/2, random.randint(1, 6))
+                self.update()
+                sleep(0.2)
+                self.die.delete("dots")
+        self.currentRoll = random.randint(1, 6)
+        self.displayNum(self.diesize/2, self.diesize/2, self.currentRoll)
+        self.bottomText["state"] = "normal"
+        self.bottomText.delete("1.0", "end")
+        if self.currentRoll % 2 == 0:
+            self.currentReward *= 2
+            if self.currentReward < self.maximumReward:
+                self.bottomText.insert("1.0", winningText.format(self.currentReward))
+        if self.currentRoll % 2 == 1 or self.currentReward >= self.maximumReward:
+            self.bottomText.insert("1.0", losingText.format(self.currentReward))
+            self.next["text"] = "Pokračovat"
+            self.next["command"] = self.nextFun
+            self.root.texts["lottery"] = self.currentReward
+        self.bottomText["state"] = "disabled"
+        self.update()
+        self.next["state"] = "!disabled"
+
+
+    def createDots(self, x0, y0, num):
+        positions = {"1": [(0,0)],
+                     "2": [(-1,-1), (1,1)],
+                     "3": [(-1,-1), (0,0), (1,1)],
+                     "4": [(-1,-1), (-1,1), (1,-1), (1,1)],
+                     "5": [(-1,-1), (-1,1), (0,0), (1,-1), (1,1)],
+                     "6": [(-1,-1), (-1,1), (1,-1), (1,1), (-1,0), (1,0)]}
+        for x, y in positions[str(num)]:
+            d = self.diesize/4
+            coords = [x0 + x*d + d/3, y0 - y*d + d/3,
+                      x0 + x*d - d/3, y0 - y*d - d/3]
+            self.die.create_oval(tuple(coords), fill = "black", tag = "dots")
+
+
+    def createText(self, x0, y0, num):
+        self.die.create_text(x0, y0, text = str(num), font = "helvetica 70", tag = "die")
+        
+                   
+    def write(self):
+        self.file.write("\t".join(map(str, self.id + str(self.currentReward))) + "\n")
         
 
-    def checkAllFilled(self):
-        if all([var.get() for var in self.variables.values()]):
-            self.next["state"] = "!disabled"
-
-
-    def write(self):
-        selected = random.randint(1, 5)
-        self.root.texts["lottery_selected"] = selected
-        if "risky" in self.variables[selected - 1].get():
-            self.root.texts["lottery_chosen"] = "risky"
-            if random.random() * 100 < self.options[1][selected - 1]:
-                win = self.options[2][selected - 1]
-                self.root.texts["lottery_random"] = "won"
-            else:
-                win = 0
-                self.root.texts["lottery_random"] = "lost"
-        else:
-            self.root.texts["lottery_chosen"] = "safe"
-            win = self.options[0][selected - 1]
-        self.file.write("Lottery\n")
-        self.root.texts["lottery_win"] = win
-        self.file.write("\t".join([self.id] + [var.get() for var in self.variables.values()]) + "\n")
-
-
-
-class LotteryWin(InstructionsFrame):
-    def __init__(self, root):
-        self.root = root
-        if self.root.texts["lottery_chosen"] == "risky":
-            append = risky
-        else:
-            append = sure
-        text = wintext.format(self.root.texts["lottery_selected"],
-                              append.format(self.root.texts["lottery_win"], CURRENCY))       
-        super().__init__(root, text = text, proceed = True, height = 5)  
+#LotteryInstructions = (InstructionsFrame, {"text": introText, "height": 5})
 
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([Lottery,
-         LotteryWin])
+    GUI([#LotteryInstructions,
+         Lottery
+         ])
