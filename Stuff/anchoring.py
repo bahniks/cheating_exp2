@@ -19,7 +19,7 @@ random.shuffle(items)
 
 
 class Comparison(ExperimentFrame):
-    def __init__(self, root):
+    def __init__(self, root, state = "first"):
         super().__init__(root)
 
         self.file.write("Comparison\n")
@@ -82,7 +82,7 @@ class Comparison(ExperimentFrame):
     def displayEntry(self):
         self.answer = ttk.Entry(self, textvariable = self.answerVar, font = "helvetica 20", width = 20)
         self.answer.grid(row = 4, column = 1, columnspan = 2, pady = 10)
-        self.answer.bind("<KeyRelease>", self.check)
+        self.answer.bind("<KeyRelease>", self.checkEntry)
         self.nextButton.grid(row = 5, column = 1, columnspan = 2)
         self.nextButton["state"] = "disabled"
         self.text["state"] = "normal"
@@ -90,7 +90,7 @@ class Comparison(ExperimentFrame):
         self.text["state"] = "disabled"
 
 
-    def check(self, e):
+    def checkEntry(self, e):
         if self.answerVar.get():
             self.nextButton["state"] = "!disabled"
         else:
@@ -113,7 +113,8 @@ class Comparison(ExperimentFrame):
         self.text["state"] = "disabled"
         self.answer.grid_forget()
         self.nextButton.grid_forget()
-        
+
+        self.root.texts[items[self.number][0]] = self.answerVar.get().replace("/t", " ").replace("\n", "\t")
         self.file.write("\t".join([self.id, items[self.number][0], self.valence,
                                    self.comparisonAnswer, self.answerVar.get().replace("/t", " ")]) + "\n")
         self.answerVar.set("")
@@ -130,7 +131,7 @@ class Absolute(ExperimentFrame):
     def __init__(self, root):
         super().__init__(root)
 
-        self.file.write("Comparison\n")
+        self.file.write("Absolute\n")
 
         self.answerVar = StringVar()
         
@@ -195,6 +196,6 @@ class Absolute(ExperimentFrame):
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([Comparison,
-         #Absolute
+    GUI([(Comparison, {"state": "first"}),
+         (Comparison, {"state": "second"})
          ])
