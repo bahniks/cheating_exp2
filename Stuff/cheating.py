@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import ttk
 from time import perf_counter, sleep
+from collections import defaultdict
 
 import random
 import os
@@ -12,8 +13,7 @@ from debriefcheating import DebriefCheating
 
 
 
-
-WIN = 35
+WIN = 35 # Odstranit
 CURRENCY = "Kč"
 
 
@@ -36,7 +36,7 @@ You have to decide whether an odd or even number will be rolled on a die in this
 Press "{}".
 '''.format("{}", rolltext)
 
-treatmenttext2 = "Select whether you predicted correctly and earned {} {} or whether you predicted incorrectly and earned nothing in this trial.".format(WIN, CURRENCY)
+treatmenttext2 = "Select whether you predicted correctly and earned {} {} or whether you predicted incorrectly and earned nothing in this trial."
 
 controltext = """Trial {}
 
@@ -44,7 +44,7 @@ You have to decide whether an odd or an even number will be rolled on a die in t
 """
 
 controltext2 = "In this trial, your prediction was {}"
-wintext = "correct and you earned {} {}.".format(WIN, CURRENCY)
+wintext = "correct and you earned {} {}."
 losstext = "incorrect and you earned nothing."
 
 choicetext = """This is the end of the second set of 10 trials. If this set is chosen, you will receive {} {}.
@@ -119,12 +119,13 @@ class Cheating(ExperimentFrame):
 
         #######################
         # adjustable parameters
-        self.trials = 10
+        self.trials = 3 # change for testing
         self.pause_after_roll = 0.5
         self.pause_before_trial = 0.2
         self.displayNum = self.createDots # self.createDots or self.createText
         self.fakeRolling = True # False for testing
         self.diesize = 240
+        self.rewards = [i*5 + 5 for i in range(self.trials)]
         #######################
 
         global conditions
@@ -168,8 +169,8 @@ class Cheating(ExperimentFrame):
 
         ttk.Style().configure("TButton", font = "helvetica 15")
 
-        if block == 1:
-            self.root.wins = [0, 0, 0]            
+        if not hasattr(self.root, "wins"):
+            self.root.wins = defaultdict(int)            
 
         self.responses = []
 
@@ -181,12 +182,7 @@ class Cheating(ExperimentFrame):
             self.currentTrial += 1
             self.startTrial()
         else:
-            if self.blockNumber == 1:
-                self.root.texts["win1"] = self.root.wins[0] * WIN
-            elif self.blockNumber == 2:
-                self.root.texts["win2"] = self.root.wins[1] * WIN
-            elif self.blockNumber == 3:
-                self.root.texts["win3"] = self.root.wins[2] * WIN
+            self.root.texts["win" + str(self.blockNumber)] = sum(self.rewards[:self.root.wins[self.blockNumber]])
             self.nextFun()
 
 
@@ -242,7 +238,7 @@ class Cheating(ExperimentFrame):
     def bottomPart(self):
         self.bottomText["state"] = "normal"
         if "treatment" in self.condition:
-            self.bottomText.insert("1.0", treatmenttext2)
+            self.bottomText.insert("1.0", treatmenttext2.format(self.rewards[self.root.wins[self.blockNumber]], CURRENCY))
             ttk.Style().configure("Green.TButton", foreground = "green")
             ttk.Style().configure("Red.TButton", foreground = "red")
             self.winButton = ttk.Button(self.bottomButtonFrame, text = correcttext,
@@ -254,9 +250,9 @@ class Cheating(ExperimentFrame):
         elif "control" in self.condition:
             win = (self.response == "odd" and self.currentRoll in (1,3,5)) or (
                 self.response == "even" and self.currentRoll in (2,4,6))
+            text = wintext.format(self.rewards[self.root.wins[self.blockNumber]], CURRENCY) if win else losstext
             if win:
-                self.root.wins[self.blockNumber - 1] += 1
-            text = wintext if win else losstext
+                self.root.wins[self.blockNumber] += 1
             self.bottomText.insert("1.0", controltext2.format(text))
             self.continueButton = ttk.Button(self.bottomButtonFrame, text = continuetext,
                                              command = self.answer)
@@ -309,7 +305,7 @@ class Cheating(ExperimentFrame):
     def answer(self, answer = "NA"):
         t = perf_counter()
         if answer == "win":
-            self.root.wins[self.blockNumber - 1] += 1
+            self.root.wins[self.blockNumber] += 1
         self.responses.append([self.blockNumber, self.currentTrial, self.condition,
                                self.currentRoll, self.response,
                                answer, t - self.time, self.firstResponse - self.time,
@@ -338,8 +334,10 @@ class Cheating(ExperimentFrame):
 
 
 class Selection(InstructionsFrame):
-    def __init__(self, root):
-        super().__init__(root, text = choicetext, proceed = False, update = ["win2"], height = 17, roundNum = 3)
+    def __init__(self, root, roundNum, update = None):
+        super().__init__(root, text = choicetext, proceed = False, update = update, height = 17)
+
+        self.roundNum = roundNum
 
         ttk.Style().configure("TButton", font = "helvetica 15", width = 16)
 
@@ -352,7 +350,7 @@ class Selection(InstructionsFrame):
 
     def response(self, choice):
         global conditions
-        conditions[roundNum] += "_" + choice
+        conditions[self.roundNum - 1] += "_" + choice
         # pridat ubirani penez v pripade "fee_treatment"
         self.nextFun()
        
@@ -464,32 +462,28 @@ conditions = conditions + conditions2
 
 Instructions1 = CheatingInstructions
 Instructions2 = (InstructionsFrame, {"text": intro_block_2, "height": 5, "update": ["win1"]})
-if conditions[2] == "fee":
-    Instructions3 = Selection # actually make it do something different
-    Instructions4 = Selection
-else:
-    Instructions3 = Selection
-    Instructions4 = Selection    
+Instructions3 = (Selection, {"roundNum": 3, "update": ["win2"]})
+Instructions4 = (Selection, {"roundNum": 4, "update": ["win3"]})
 
 BlockOne = (Cheating, {"block": 1})
 BlockTwo = (Cheating, {"block": 2})
 BlockThree = (Cheating, {"block": 3})
 BlockFour = (Cheating, {"block": 4})
 
-EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win3"]})
+EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win4"]})
 
 
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([#Instructions1,
-         #BlockOne,
-         #Instructions2,
-         #BlockTwo,
+    GUI([Instructions1,
+         BlockOne,
+         Instructions2,
+         BlockTwo,
          Instructions3,
          BlockThree,
          Instructions4,
-         BlockFour#,
-         #EndCheating,
+         BlockFour,
+         EndCheating#,
          #DebriefCheating
          ])
