@@ -11,8 +11,8 @@ from common import ExperimentFrame, InstructionsFrame
 from gui import GUI
 
 
-items = [["car", "průměrná cena auta", "100 000 Kč", "900 000 Kč", "značky auta", "průměrná cena auta"],
-         ["temperature", "průměrná teplota v Praze", "8°C", "28°C", "měsíce v roce", "průměrná teplota v měsíci"]
+items = [["car", "průměrná cena auta", "100 000 Kč", "900 000 Kč", "značky auta", "průměrná cena auta", "Kč"],
+         ["temperature", "průměrná teplota v Praze", "8°C", "28°C", "měsíce v roce", "průměrná teplota v měsíci", "°C"]
          ]
 
 random.shuffle(items)
@@ -99,15 +99,17 @@ class Comparison(ExperimentFrame):
 
 
     def displayEntry(self):
-        # pridat jednotky
         self.answer = ttk.Entry(self, textvariable = self.answerVar, font = "helvetica 20", width = 20)
         self.answer.grid(row = 4, column = 1, columnspan = 2, pady = 10)
         self.answer.bind("<KeyRelease>", self.checkEntry)
         self.nextButton.grid(row = 5, column = 1, columnspan = 2)
         self.nextButton["state"] = "disabled"
         self.text["state"] = "normal"
-        index = 4 if self.state == "first" else 1
-        self.text.insert("end", self.entryInstruction.format(items[self.number][index]), "center")
+        if self.state == "first":
+            sentenceEnd = items[self.number][4]
+        else:
+            sentenceEnd = items[self.number][1] + " (v {})".format(items[self.number][6])       
+        self.text.insert("end", self.entryInstruction.format(sentenceEnd), "center")
         self.text["state"] = "disabled"
 
 
