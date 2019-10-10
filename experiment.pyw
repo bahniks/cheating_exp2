@@ -13,7 +13,8 @@ from quest import QuestInstructions, Hexaco
 from intros import Intro, Ending
 from demo import Demographics
 from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructions3, BlockThree
-from cheating import EndCheating, DebriefCheating
+from cheating import EndCheating
+from debriefcheating import DebriefCheating
 from debriefing import Debriefing
 from lottery import Lottery
 
