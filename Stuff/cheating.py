@@ -21,92 +21,79 @@ CURRENCY = "Kč"
 ################################################################################
 # TEXTS
 
-continuetext = "Continue"
-oddtext = "Odd (1,3,5)"
-eventext = "Even (2,4,6)"
-rolltext = "Roll a die"
-correcttext = "Predicted correctly"
-incorrecttext = "Predicted incorrectly"    
-predictiontext = "I made a prediction."
+continuetext = "Pokračovat"
+oddtext = "Lichá (1,3,5)"
+eventext = "Sudá (2,4,6)"
+rolltext = "Hodit kostkou"
+correcttext = "Správně"
+incorrecttext = "Špatně"    
+predictiontext = "Zvolil jsem možnost"
 
 treatmenttext = '''Trial {}
 
-You have to decide whether an odd or even number will be rolled on a die in this trial. Now, please make your prediction, remember it, and then click on the button to roll the die.
+Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností, zapamatujte si ji, a poté klikněte na tlačítko Hodit kostkou.
 
 Press "{}".
 '''.format("{}", rolltext)
 
-treatmenttext2 = "Select whether you predicted correctly and earned {} {} or whether you predicted incorrectly and earned nothing in this trial."
+treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste nic v tomto kole.".format(WIN)
 
 controltext = """Trial {}
 
-You have to decide whether an odd or an even number will be rolled on a die in this trial. Now, select your prediction and then click on the button to roll the die.
+Máte za úkol se rozhodnout, zda padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a klikněte na tlačítko {}.
+""".format("{}", rolltext)
+
+controltext2 = "V tomto kole byla vaše předpověď {}"
+wintext = "správná a vydělali jste {} Kč.".format(WIN)
+losstext = "špatná a nevydělali jste nic."
+
+choicetext = """Toto je konec druhého kola o deseti pokusech. Pokud bude toto kolo vylosováno, obdržíte {} Kč.
+
+Jak jste zaznamenali, úkol měl dvě verze:
+
+Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
+
+Nyní vás čeká poslední kolo s deseti pokusy. Pro toto kolo máte možnost si zvolit jednu z následujících možností:
+- verze PŘED  
+- verze PO.
 """
 
-controltext2 = "In this trial, your prediction was {}"
-wintext = "correct and you earned {} {}."
-losstext = "incorrect and you earned nothing."
-
-choicetext = """This is the end of the second set of 10 trials. If this set is chosen, you will receive {} {}.
-
-As you have noticed, there were two versions of the task:
-
-Version “BEFORE”, in which predictions are stated before the roll of a die. Afterwards, you see the outcome of the roll and learn whether your prediction was correct or not and how much you earned.
-Version “AFTER”, in which you state whether your prediction was correct or incorrect and how much you earned after the roll of a die is made and you see its result.
-
-Now, the last set of 10 trials is about to begin. You can choose which version of the task you want for the last set:
-- BEFORE version  
-- AFTER version
-- select one of the two versions at random (that is, you will have 50% chance to get the BEFORE version and 50% chance to get the AFTER version of the task).
-""".format("{}", CURRENCY)
-
 # buttons
-controlchoicetext = "BEFORE version"
-treatmentchoicetext = "AFTER version"
-randomchoicetext = "random selection"   
+controlchoicetext = "verze PŘED"
+treatmentchoicetext = "verze PO" 
 
-nochoicetext = """This is the end of the second set of 10 trials. If this set is chosen, you will receive {} {}.
-
-As you have noticed, there were two versions of the task:
-
-Version “BEFORE”, in which predictions are stated before the roll of a die. Afterwards, you see the outcome of the roll and learn whether your prediction was correct or not and how much you earned.
-Version “AFTER”, in which you state whether your prediction was correct or incorrect and how much you earned after the roll of a die is made and you see its result.
-
-Now, the last set of 10 trials is about to begin. For the last set, you were randomly assigned the {} of the task.
-""".format("{}", CURRENCY, "{}")
-
-firstversiontext = "BEFORE version"
-secondversiontext = "AFTER version"
-
+ 
 intro_block_1 = """
-In the following task, you have to predict whether an odd or even number will be rolled on a virtual die on your computer. Numbers 1, 2, 3, 4, 5, and 6 can be rolled with equal probability. Odd numbers are 1, 3, and 5. Even numbers are 2, 4, and 6.
+V následujícím úkolu máte uhodnout, jestli na virtuální kostce na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 2 a 3. Sudá čísla jsou jsou 2, 4 a 6. 
 
-You will make predictions in 3 sets consisting of 10 trials each. There will be a short break after each set.
+Budete hádat ve třech kolech po deseti pokusech. Po každém kole bude krátká přestávka.
 
-For every trial with a correct prediction, you earn {} {}.
+Za každý uhodnutý hod získáte {}.
 
-After completing all three sets, one set will be chosen at random. You will only receive money earned in the chosen set. Therefore, if you make correct predictions in all 10 trials of a set that is later chosen, you will receive {} {}. The number of correct predictions in the two remaining sets does not affect the amount of money that you will receive in any way.
+Poté, co dokončíte všechna tři kola, bude jedno kolo náhodně vybráno. Obdržíte pouze peníze, které jste vydělali v tomto vybraném kole. Pokud správně uhodnete všech deset hodů v daném kole, a toto kolo je později vybráno, obdržíte {}. Počet správně uhodnutých hodů ve dvou ostatních kolech nijak neovlivní množství peněz, které obdržíte.
 
-To check whether you understand the conditions correctly, please answer the following question:
-When you make 7 correct predictions out of 10 in the first set, 5 correct predictions out of 10 in the second set, and 2 correct predictions out of 10 in the third set, and then the third set is chosen, how much money will you receive?
-""".format(WIN, CURRENCY, WIN*10, CURRENCY)
+Abychom ověřili, že rozumíte instrukcím, prosím odpovězte na následující otázku:
+Když správně uhodnete 7 hodů z 10 v prvním kole, 5 hodů z 10 ve druhém kole, a 2 hody z 10 ve třetím kole, a třetí kolo je poté vybráno, kolik peněz obdržíte?
+""".format(WIN, WIN*10)
 
-wrong_answer = "{} {} is a wrong answer, the correct answer is {} {}. The third set was chosen and you correctly predicted 2 rolls in the third set. Therefore, you get 2×{} = {} {}.".format("{}", CURRENCY, WIN*2, CURRENCY, WIN, WIN*2, CURRENCY)
-correct_answer = "{} {} is the correct answer. The third set was chosen and you correctly predicted 2 rolls in the third set. Therefore, you get 2×{} = {} {}.".format("{}", CURRENCY, WIN, WIN*2, CURRENCY)
+wrong_answer = "{} Kč je chybná odpověď, správná odpověď je {} Kč. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 2×{} = {} Kč.".format("{}", WIN*2, WIN, WIN*2)
+correct_answer = "{} Kč je správná odpověď. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 2×{} = {} Kč.".format("{}", WIN, WIN*2)
 
-second_check_question = "Before you begin, write down how many correct predictions you believe you will make in the chosen set for which you will earn money."
-prediction_label = "correct predictions"
-wrong_trials = "There are only 10 trials in one set!"
+second_check_question = "Dříve než začnete, odhadněte, kolik hodů správně uhodnete ve zvoleném kole, ve kterém získáte peníze."
+prediction_label = "správné předpovědi"
+wrong_trials = "V jednom kole je pouze 10 hodů!"
 
 intro_block_2 = """
-This is the end of the first set of 10 trials. If this set is chosen, you will receive {} {}. Now, the second block of 10 trials begins.
-""".format("{}", CURRENCY)
+Toto je konec prvního kola s deseti hody. Pokud bude toto kolo vybráno, obdržíte  {} Kč. Nyní začne druhé kolo s deseti hody.
+"""
 
-endtext = """This is the end of the last set of 10 trials. If this set is chosen, you will receive {} {}.
+endtext = """Toto je konec posledního kola s deseti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč.
 
-This is the end of the dice rolling task.
+Toto je konec úkolu s kostkou.
 
-""".format("{}", CURRENCY)
+"""
+
 
 
 
@@ -458,17 +445,20 @@ conditions2 = ["free", "fee"]
 random.shuffle(conditions)
 random.shuffle(conditions2)
 conditions = conditions + conditions2
+group = random.choice(["low", "high"])
 
 
 Instructions1 = CheatingInstructions
 Instructions2 = (InstructionsFrame, {"text": intro_block_2, "height": 5, "update": ["win1"]})
 Instructions3 = (Selection, {"roundNum": 3, "update": ["win2"]})
 Instructions4 = (Selection, {"roundNum": 4, "update": ["win3"]})
+Instructions5 = (Selection, {"roundNum": 5, "update": ["win4"]})
 
 BlockOne = (Cheating, {"block": 1})
 BlockTwo = (Cheating, {"block": 2})
 BlockThree = (Cheating, {"block": 3})
 BlockFour = (Cheating, {"block": 4})
+BlockFive = (Cheating, {"block": 5})
 
 EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win4"]})
 
@@ -484,6 +474,8 @@ if __name__ == "__main__":
          BlockThree,
          Instructions4,
          BlockFour,
+         Instructions5, # pridat instrukce s informaci o poctu podvodniku
+         BlockFive,
          EndCheating#,
          #DebriefCheating
          ])
