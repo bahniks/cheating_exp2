@@ -11,11 +11,29 @@ from common import ExperimentFrame, InstructionsFrame
 from gui import GUI
 
 
-items = [["car", "průměrná cena auta", "100 000 Kč", "900 000 Kč", "značky auta", "průměrná cena auta", "Kč"],
-         ["temperature", "průměrná teplota v Praze", "8°C", "28°C", "měsíce v roce", "průměrná teplota v měsíci", "°C"]
+
+intro1 = """V následující části studie budete mezi sebou srovnávat různé hodnoty a uvádět příklady různých kategorií (např. příkladem nábytku by mohla být "židle").
+Při uvádění příkladů uveďte vždy první příklad, co vás napadne. Dbejte nicméně na to, aby se opravdu jednalo o příklad dané kategorie.
+"""
+
+intro2 = """V následující části studie budete srovnávat a odhadovat různé hodnoty.
+"""
+
+
+items = [["price", "průměrná cena nového auta", "200 tisíc Kč", "900 tisíc Kč", "značky auta", "průměrná cena nového auta {}", "v tisících Kč"],
+         ["temperature", "průměrná roční teplota v Praze", "1°C", "25°C", "měsíce v roce", "průměrná teplota v Praze v měsíci {}", "v °C"],
+         ["age", "průměrný věk českého poslance/poslankyně", "25", "80", "českého poslance/poslankyně", "věk poslance/poslankyně jména {}", "v letech"],
+         ["population", "průměrná populace států v EU", "1 milion obyvatel", "80 milionů obyvatel", "státu EU", "počet obyvatel státu {}", "v milionech obyvatel"],
+         ["salary", "průměrný plat v ČR", "15 000 Kč", "90 000 Kč", "zaměstnání", "průměrný plat, který má {},", "v Kč"],
+         ["distance", "průměrná vzdálenost hlavních měst evropských států od Prahy", "300 km", "2500 km", "hlavního města evropského státu (kromě Prahy)", "vzdálenost Prahy od města {}", "v km"],
+         ["unemployment", "míra nezaměstnanosti v ČR", "1%", "10%", "kraje ČR", "míra nezaměstnanosti kraje {}", "v %"],
+         ["weight", "průměrná hmotnost savce v pražské zoo", "1 kg", "3000 kg", "druhu savce", "hmotnost, kterou má {},", "v kg"],
+         ["length", "průměrná délka českého křestního jména", "4 písmena", "9 písmen", "křestního jména", "délka jména {}", "počet písmen"],
+         ["days", "průměrná délka oběhu planety sluneční soustavy okolo Slunce", "100 dní", "25 000 dní", "planety", "délka oběhu okolo Slunce planety {}", "ve dnech"]
          ]
 
 random.shuffle(items)
+#items = items[:2] # for testing
 
 
 class Comparison(ExperimentFrame):
@@ -37,7 +55,7 @@ class Comparison(ExperimentFrame):
         else:
             self.entryInstruction = "Jaká je {}?"
         self.text = Text(self, font = "helvetica 20", relief = "flat", background = "white",
-                         width = 80, height = 1, pady = 7, wrap = "word")
+                         width = 80, height = 2, pady = 7, wrap = "word")
         self.text.grid(row = 3, column = 1, columnspan = 2, sticky = S)
         self.text.tag_configure("center", justify = "center")
 
@@ -61,7 +79,7 @@ class Comparison(ExperimentFrame):
         self.columnconfigure(2, weight = 1)
         self.columnconfigure(3, weight = 4)
         
-        self.rowconfigure(0, weight = 7)
+        self.rowconfigure(0, weight = 4)
         self.rowconfigure(1, weight = 4)
         self.rowconfigure(3, weight = 5)
         self.rowconfigure(4, weight = 1)
@@ -70,7 +88,10 @@ class Comparison(ExperimentFrame):
 
         self.number = 0
 
-        self.displayQuestion()
+        if self.state == "first":
+            self.displayQuestion()
+        else:
+            self.displayEntry()
         
 
     def lowerResponse(self):
@@ -89,7 +110,7 @@ class Comparison(ExperimentFrame):
         if self.state == "first":
             self.text.insert("end", self.question.format(items[self.number][1], self.anchor), "center")
         else:
-            self.text.insert("end", self.question.format(items[self.number][5] + " " + self.root.texts[items[self.number][0]],
+            self.text.insert("end", self.question.format(items[self.number][5].format(self.root.texts[items[self.number][0]]),
                                                          items[self.number][1]), "center")
                                                          
         self.text["state"] = "disabled"
@@ -108,7 +129,7 @@ class Comparison(ExperimentFrame):
         if self.state == "first":
             sentenceEnd = items[self.number][4]
         else:
-            sentenceEnd = items[self.number][1] + " (v {})".format(items[self.number][6])       
+            sentenceEnd = items[self.number][1] + " ({})".format(items[self.number][6])       
         self.text.insert("end", self.entryInstruction.format(sentenceEnd), "center")
         self.text["state"] = "disabled"
 
@@ -127,8 +148,11 @@ class Comparison(ExperimentFrame):
         self.lower.grid_forget()
         self.higher.grid_forget()
         self.comparisonAnswer = answer
-        self.displayEntry()
-
+        if self.state == "first":
+            self.displayEntry()
+        elif self.state == "second":
+            self.finishRound()
+            
 
     def proceed(self):
         if self.state == "second":
@@ -143,25 +167,41 @@ class Comparison(ExperimentFrame):
         self.text["state"] = "disabled"
         self.answer.grid_forget()
         self.nextButton.grid_forget()
+        if self.state == "first":
+            self.finishRound()
+        else:
+            self.displayQuestion()
 
+
+    def finishRound(self):
         if self.state == "first":
             self.root.texts[items[self.number][0]] = self.answerVar.get().replace("/t", " ").replace("\n", "\t")
-            self.file.write("\t".join([self.id, items[self.number][0], self.valence,
+            self.file.write("\t".join([self.id, str(self.number + 1), items[self.number][0], self.valence,
                                        self.comparisonAnswer, self.answerVar.get().replace("/t", " ").replace("\n", "\t")]) + "\n")
         else:
-            self.file.write("\t".join([self.id, items[self.number][0], self.comparisonAnswer, self.answerVar.get()]) + "\n")
+            self.file.write("\t".join([self.id, str(self.number + 1), items[self.number][0],
+                                       self.comparisonAnswer, self.answerVar.get()]) + "\n")
         self.answerVar.set("")
         self.number += 1
 
         if self.number == len(items):
             self.nextFun()
-        else:
+        elif self.state == "first":
             self.displayQuestion()
+        elif self.state == "second":
+            self.displayEntry()
+
+
+
+Instructions1 = (InstructionsFrame, {"text": intro1, "height": 5, "font": 20})
+Instructions2 = (InstructionsFrame, {"text": intro2, "height": 3, "font": 20, "width": 60})
 
       
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([(Comparison, {"state": "first"}),
+    GUI([Instructions1,
+         (Comparison, {"state": "first"}),
+         Instructions2,
          (Comparison, {"state": "second"})
          ])
