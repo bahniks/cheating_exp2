@@ -158,6 +158,7 @@ class Comparison(ExperimentFrame):
         if self.state == "second":
             try:
                 float(self.answerVar.get())
+                self.warning["foreground"] = "white"
             except:
                 self.warning["foreground"] = "red"
                 return
