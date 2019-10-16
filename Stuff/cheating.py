@@ -13,9 +13,8 @@ from debriefcheating import DebriefCheating
 
 
 
-WIN = 35 # Odstranit
-CURRENCY = "Kč"
 
+FEE = 25
 
 
 ################################################################################
@@ -29,71 +28,114 @@ correcttext = "Správně"
 incorrecttext = "Špatně"    
 predictiontext = "Zvolil jsem možnost"
 
-treatmenttext = '''Trial {}
+treatmenttext = '''Kolo {}
 
 Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností, zapamatujte si ji, a poté klikněte na tlačítko Hodit kostkou.
+'''
 
-Press "{}".
-'''.format("{}", rolltext)
+treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste nic v tomto kole."
 
-treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste nic v tomto kole.".format(WIN)
+controltext = """Kolo {}
 
-controltext = """Trial {}
-
-Máte za úkol se rozhodnout, zda padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a klikněte na tlačítko {}.
-""".format("{}", rolltext)
+Máte za úkol se rozhodnout, zda padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a klikněte na tlačítko Hodit kostkou.
+"""
 
 controltext2 = "V tomto kole byla vaše předpověď {}"
-wintext = "správná a vydělali jste {} Kč.".format(WIN)
+wintext = "správná a vydělali jste {} Kč."
 losstext = "špatná a nevydělali jste nic."
 
-choicetext = """Toto je konec druhého kola o deseti pokusech. Pokud bude toto kolo vylosováno, obdržíte {} Kč.
+
+freetext = """Toto je konec {} kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká poslední kolo s deseti pokusy. Pro toto kolo máte možnost si zvolit jednu z následujících možností:
+Nyní vás čeká {} kolo s dvanácti pokusy. Pro toto kolo máte možnost si zvolit jednu z následujících možností:
 - verze PŘED  
 - verze PO.
 """
+
+feetext = """Toto je konec {{}} kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {{}} Kč.
+
+Jak jste zaznamenali, úkol měl dvě verze:
+
+Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+
+Nyní vás čeká {{}} kolo s dvanácti pokusy. Pro toto kolo máte možnost zvolit si jednu z uvedených verzí. Volba PŘED je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto kole.
+- verze PŘED a zaplatím {} Kč
+- verze PO a zaplatím 0 Kč.
+""".format(FEE, FEE, FEE)
+
+third = ["druhého", "třetí"]
+fourth = ["třetího", "čtvrté"]
 
 # buttons
 controlchoicetext = "verze PŘED"
 treatmentchoicetext = "verze PO" 
 
+
+intro_block_5 = """Toto je konec čtvrtého kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {{}} Kč.
+
+Nyní vás čeká páté, poslední kolo s dvanácti pokusy. Úkol má opět dvě verze:
+
+Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+
+{}
+
+Máte nyní poslední možnost zvolit si jednu z následujících možností:
+- verze PŘED  
+- verze PO.
+"""
+
+lowmanipulation = "V předchozím podobném experimentu si pouze 30% účastníků zvolilo verzi “PO”."
+highmanipulation = "V předchozím podobném experimentu si pouze 25% účastníků zvolilo verzi “PŘED”."
+
+
+estimatext = """Jak jste zaznamenali, úkol měl dvě verze:
+
+Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+
+Odhadněte, kolik % účastníků si zvolilo verzi PŘED a kolik hodů z 12 průměrně uhodli a kolik % účastníků si zvolilo verzi PO a kolik hodů z 12 průměrně uhodli.
+"""
+
+beforeEstimate = "% účastníků zvolilo verzi “PŘED” a uhodli průměrně"
+afterEstimate = "% účastníků zvolilo verzi “PO” a uhodli průměrně"
+
  
 intro_block_1 = """
 V následujícím úkolu máte uhodnout, jestli na virtuální kostce na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 2 a 3. Sudá čísla jsou jsou 2, 4 a 6. 
 
-Budete hádat ve třech kolech po deseti pokusech. Po každém kole bude krátká přestávka.
+Budete hádat v pěti kolech po dvanácti pokusech. Po každém kole bude krátká přestávka.
 
-Za každý uhodnutý hod získáte {}.
+Uhodnete-li první hod, získáte 5 Kč, uhodnete-li druhý, získáte 10 Kč, uhodnete-li třetí, získáte 15 Kč a tak dále, za každý další uhodnutý hod 5 Kč navíc. Za uhodnutý dvanáctý hod tedy získáte 60 Kč.
 
-Poté, co dokončíte všechna tři kola, bude jedno kolo náhodně vybráno. Obdržíte pouze peníze, které jste vydělali v tomto vybraném kole. Pokud správně uhodnete všech deset hodů v daném kole, a toto kolo je později vybráno, obdržíte {}. Počet správně uhodnutých hodů ve dvou ostatních kolech nijak neovlivní množství peněz, které obdržíte.
+Poté, co dokončíte všech pět kol, bude jedno kolo náhodně vybráno. Obdržíte pouze peníze, které jste vydělali v tomto vybraném kole. Pokud správně uhodnete všech dvanáct hodů v daném kole, a toto kolo je později vybráno, obdržíte 390. Počet správně uhodnutých hodů v ostatních kolech nijak neovlivní množství peněz, které obdržíte.
 
 Abychom ověřili, že rozumíte instrukcím, prosím odpovězte na následující otázku:
-Když správně uhodnete 7 hodů z 10 v prvním kole, 5 hodů z 10 ve druhém kole, a 2 hody z 10 ve třetím kole, a třetí kolo je poté vybráno, kolik peněz obdržíte?
-""".format(WIN, WIN*10)
-
-wrong_answer = "{} Kč je chybná odpověď, správná odpověď je {} Kč. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 2×{} = {} Kč.".format("{}", WIN*2, WIN, WIN*2)
-correct_answer = "{} Kč je správná odpověď. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 2×{} = {} Kč.".format("{}", WIN, WIN*2)
-
-second_check_question = "Dříve než začnete, odhadněte, kolik hodů správně uhodnete ve zvoleném kole, ve kterém získáte peníze."
-prediction_label = "správné předpovědi"
-wrong_trials = "V jednom kole je pouze 10 hodů!"
-
-intro_block_2 = """
-Toto je konec prvního kola s deseti hody. Pokud bude toto kolo vybráno, obdržíte  {} Kč. Nyní začne druhé kolo s deseti hody.
+Když správně uhodnete 7 hodů z 12 v prvním kole, 5 hodů z 12 ve druhém kole, a 2 hody z 12 ve třetím kole a ve čtvrtém a pátém neuhodnete nic, a třetí kolo je poté vybráno, kolik peněz obdržíte?
 """
 
-endtext = """Toto je konec posledního kola s deseti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč.
+wrong_answer = "{} Kč je chybná odpověď, správná odpověď je 15 Kč. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 15 = 5 + 10 Kč."
+correct_answer = "15 Kč je správná odpověď. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 15 = 5 + 10 Kč."
+
+second_check_question = "Dříve než začnete, odhadněte, kolik hodů správně uhodnete ve zvoleném kole, ve kterém získáte peníze."
+prediction_label = "správných předpovědí"
+wrong_trials = "V jednom kole je pouze 12 hodů!"
+
+intro_block_2 = """
+Toto je konec prvního kola s dvanácti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč. Nyní začne druhé kolo s dvanácti hody.
+"""
+
+endtext = """Toto je konec posledního kola s dvanácti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč.
 
 Toto je konec úkolu s kostkou.
 
 """
-
 
 
 
@@ -106,7 +148,7 @@ class Cheating(ExperimentFrame):
 
         #######################
         # adjustable parameters
-        self.trials = 3 # change for testing
+        self.trials = 12 # change for testing
         self.pause_after_roll = 0.5
         self.pause_before_trial = 0.2
         self.displayNum = self.createDots # self.createDots or self.createText
@@ -169,7 +211,8 @@ class Cheating(ExperimentFrame):
             self.currentTrial += 1
             self.startTrial()
         else:
-            self.root.texts["win" + str(self.blockNumber)] = sum(self.rewards[:self.root.wins[self.blockNumber]])
+            fee = FEE if conditions[self.blockNumber - 1] == "fee_treatment" else 0
+            self.root.texts["win" + str(self.blockNumber)] = sum(self.rewards[:self.root.wins[self.blockNumber]]) - fee
             self.nextFun()
 
 
@@ -217,6 +260,7 @@ class Cheating(ExperimentFrame):
         self.oddButton["state"] = "disabled"
         self.evenButton["state"] = "disabled"
 
+
     def checkbuttoned(self):
         self.rollButton["state"] = "!disabled"
         self.predictedCB["state"] = "disabled"
@@ -225,7 +269,7 @@ class Cheating(ExperimentFrame):
     def bottomPart(self):
         self.bottomText["state"] = "normal"
         if "treatment" in self.condition:
-            self.bottomText.insert("1.0", treatmenttext2.format(self.rewards[self.root.wins[self.blockNumber]], CURRENCY))
+            self.bottomText.insert("1.0", treatmenttext2.format(self.rewards[self.root.wins[self.blockNumber]]))
             ttk.Style().configure("Green.TButton", foreground = "green")
             ttk.Style().configure("Red.TButton", foreground = "red")
             self.winButton = ttk.Button(self.bottomButtonFrame, text = correcttext,
@@ -237,7 +281,7 @@ class Cheating(ExperimentFrame):
         elif "control" in self.condition:
             win = (self.response == "odd" and self.currentRoll in (1,3,5)) or (
                 self.response == "even" and self.currentRoll in (2,4,6))
-            text = wintext.format(self.rewards[self.root.wins[self.blockNumber]], CURRENCY) if win else losstext
+            text = wintext.format(self.rewards[self.root.wins[self.blockNumber]]) if win else losstext
             if win:
                 self.root.wins[self.blockNumber] += 1
             self.bottomText.insert("1.0", controltext2.format(text))
@@ -322,7 +366,21 @@ class Cheating(ExperimentFrame):
 
 class Selection(InstructionsFrame):
     def __init__(self, root, roundNum, update = None):
-        super().__init__(root, text = choicetext, proceed = False, update = update, height = 17)
+        if 5 > roundNum > 2: 
+            if conditions[roundNum - 1] == "fee":
+                text = feetext
+            else:
+                text = freetext
+            if roundNum == 3:
+                text = text.format(third[0], "{}", third[1])
+            elif roundNum == 4:
+                text = text.format(fourth[0], "{}", fourth[1])
+        elif roundNum == 5:
+            manipulation = lowmanipulation if group == "low" else highmanipulation
+            text = intro_block_5.format(manipulation)
+            
+        
+        super().__init__(root, text = text, proceed = False, update = update, height = 17)
 
         self.roundNum = roundNum
 
@@ -332,14 +390,101 @@ class Selection(InstructionsFrame):
                                   command = lambda: self.response("control"))
         self.treatment = ttk.Button(self, text = treatmentchoicetext,
                                     command = lambda: self.response("treatment"))
-        self.control.grid(row = 2, column = 0)
-        self.treatment.grid(row = 2, column = 2)        
+        self.control.grid(row = 2, column = 1, sticky = W)
+        self.treatment.grid(row = 2, column = 1, sticky = E)
+
+        self.columnconfigure(1, weight = 1)
 
     def response(self, choice):
         global conditions
         conditions[self.roundNum - 1] += "_" + choice
-        # pridat ubirani penez v pripade "fee_treatment"
         self.nextFun()
+
+
+
+class Estimate(ExperimentFrame):
+    def __init__(self, root):
+        super().__init__(root)
+
+        self.text = Text(self, height = 10, font = "helvetica 18", wrap = "word", width = 80,
+                         relief = "flat")
+        self.text.insert("1.0", estimatext)
+        self.text["state"] = "disabled"
+        self.text.grid(column = 1, columnspan = 5, row = 1)
+
+        self.beforePercVar = StringVar()
+        self.afterPercVar = StringVar()
+        self.beforeRollsVar = StringVar()
+        self.afterRollsVar = StringVar()
+        
+        self.percEntryBefore = ttk.Entry(self, textvariable = self.beforePercVar, width = 5,
+                                         justify = "right", font = "helvetica 16")
+        self.percEntryAfter = ttk.Entry(self, textvariable = self.afterPercVar, width = 5,
+                                        justify = "right", font = "helvetica 16")
+        self.labelBefore = ttk.Label(self, text = beforeEstimate, font = "helvetica 16", background = "white")
+        self.labelAfter = ttk.Label(self, text = afterEstimate, font = "helvetica 16", background = "white")
+        self.rollsEntryBefore = ttk.Entry(self, textvariable = self.beforeRollsVar, width = 5,
+                                          justify = "right", font = "helvetica 16")
+        self.rollsEntryAfter = ttk.Entry(self, textvariable = self.afterRollsVar, width = 5,
+                                         justify = "right", font = "helvetica 16")
+        self.roolsBefore = ttk.Label(self, text = "hodů", font = "helvetica 16", background = "white")
+        self.roolsAfter = ttk.Label(self, text = "hodů", font = "helvetica 16", background = "white")
+
+        self.percEntryBefore.bind("<KeyRelease>", self.checkEntry)
+        self.percEntryAfter.bind("<KeyRelease>", self.checkEntry)
+        self.rollsEntryBefore.bind("<KeyRelease>", self.checkEntry)
+        self.rollsEntryAfter.bind("<KeyRelease>", self.checkEntry)
+                        
+        self.percEntryBefore.grid(column = 1, row = 3, pady = 10, sticky = E, padx = 10)
+        self.percEntryAfter.grid(column = 1, row = 4, sticky = E, padx = 10)
+        self.labelBefore.grid(column = 2, row = 3, pady = 10)
+        self.labelAfter.grid(column = 2, row = 4)
+        self.rollsEntryBefore.grid(column = 3, row = 3, pady = 10, padx = 10)
+        self.rollsEntryAfter.grid(column = 3, row = 4, padx = 10)
+        self.roolsBefore.grid(column = 4, row = 3, pady = 10)
+        self.roolsAfter.grid(column = 4, row = 4)
+
+        self.warning = ttk.Label(self, text = "Odpověď musí být číslo!\n(pro desetinná místa použijte tečku)", font = "helvetica 18",
+                                 background = "white", foreground = "white", justify = "center", state = "disabled")
+        self.warning.grid(row = 5, column = 1, columnspan = 5)
+
+        ttk.Style().configure("TButton", font = "helvetica 15", width = 12)
+
+        self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun, state = "disabled")
+        self.next.grid(column = 1, columnspan = 5, row = 6, sticky = N)
+
+        self.columnconfigure(0, weight = 1)
+        self.columnconfigure(1, weight = 1)
+        self.columnconfigure(5, weight = 1)
+        self.columnconfigure(6, weight = 1)
+        self.rowconfigure(0, weight = 2)
+        self.rowconfigure(5, weight = 1)
+        self.rowconfigure(6, weight = 1)
+
+    def check(self):
+        try:
+            float(self.beforePercVar.get())
+            float(self.afterPercVar.get())
+            float(self.beforeRollsVar.get())
+            float(self.afterRollsVar.get())
+        except Exception:
+            self.warning["foreground"] = "red"
+            return False
+        else:
+            return True
+              
+    def checkEntry(self, e):           
+        if all([self.beforePercVar.get(), self.afterPercVar.get(),
+                self.beforeRollsVar.get(), self.afterRollsVar.get()]):
+            self.next["state"] = "!disabled"
+        else:
+            self.next["state"] = "disabled"
+
+    def write(self):
+        self.file.write("Cheating predictions\n")
+        self.file.write("\t".join([self.id, self.beforePercVar.get(), self.afterPercVar.get(),
+                                   self.beforeRollsVar.get(), self.afterRollsVar.get()]) + "\n")
+                
        
     
 
@@ -356,7 +501,7 @@ class CheatingInstructions(InstructionsFrame):
         self.entry = ttk.Entry(self.checkFrame, textvariable = self.checkVar, width = 10, justify = "right",
                                font = "helvetica 16", validate = "key", validatecommand = self.vcmd)
         self.entry.grid(row = 2, column = 1, padx = 6)
-        self.currencyLabel = ttk.Label(self.checkFrame, text = CURRENCY, font = "helvetica 16",
+        self.currencyLabel = ttk.Label(self.checkFrame, text = "Kč", font = "helvetica 16",
                                        background = "white")
         self.currencyLabel.grid(row = 2, column = 2, sticky = NSEW)
 
@@ -405,7 +550,7 @@ class CheatingInstructions(InstructionsFrame):
     
     def nextFun(self):
         if self.checked:
-            if int(self.predictionVar.get()) > 10:
+            if int(self.predictionVar.get()) > 12:
                 self.bottomMistakes["state"] = "normal"
                 self.bottomMistakes.delete("1.0", "end")
                 self.bottomMistakes.insert("1.0", wrong_trials, "centered")
@@ -415,7 +560,7 @@ class CheatingInstructions(InstructionsFrame):
             super().nextFun()
         else:
             answer = int(self.checkVar.get())
-            if answer == WIN*2:
+            if answer == 15:
                 text = correct_answer.format(answer)
             else:
                 text = wrong_answer.format(answer)
@@ -435,7 +580,7 @@ class CheatingInstructions(InstructionsFrame):
             self.predictionsEntry.grid(row = 0, column = 0, padx = 6)
 
     def write(self):
-        self.file.write("Cheating prediction\n")
+        self.file.write("Cheating estimates\n")
         self.file.write(self.id + "\t" + self.predictionVar.get() + "\n\n")
         
 
@@ -446,6 +591,7 @@ random.shuffle(conditions)
 random.shuffle(conditions2)
 conditions = conditions + conditions2
 group = random.choice(["low", "high"])
+conditions += [group]
 
 
 Instructions1 = CheatingInstructions
@@ -460,7 +606,7 @@ BlockThree = (Cheating, {"block": 3})
 BlockFour = (Cheating, {"block": 4})
 BlockFive = (Cheating, {"block": 5})
 
-EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win4"]})
+EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win5"]})
 
 
 
@@ -474,8 +620,9 @@ if __name__ == "__main__":
          BlockThree,
          Instructions4,
          BlockFour,
-         Instructions5, # pridat instrukce s informaci o poctu podvodniku
+         Estimate,
+         Instructions5,
          BlockFive,
-         EndCheating#,
-         #DebriefCheating
+         EndCheating,
+         DebriefCheating
          ])

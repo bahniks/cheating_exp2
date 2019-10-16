@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from time import localtime, strftime
+from collections import defaultdict
+
 from constants import TESTING
 
 import os
@@ -34,7 +36,7 @@ class GUI(Tk):
 
         self.order = frames
 
-        self.texts = {}
+        self.texts = defaultdict(str)
                                     
         self.count = -1
 
