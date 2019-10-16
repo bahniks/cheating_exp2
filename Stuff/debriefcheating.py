@@ -23,27 +23,25 @@ CURRENCY = "Kč"
 continuetext = "Pokračovat"
 
 debrieftext = """
-As was described before, the dice rolling task had two versions:
+Jak bylo uvedeno výše, úkol s kostkou měl dvě verze:
 
-Version BEFORE, in which predictions are stated before the roll of a die. Afterwards, you see the outcome of the roll and learn whether your prediction was correct or not and how much you earned.
-
-Version AFTER, in which you state whether your prediction was correct or incorrect and how much you earned after the roll of a die is made and you see its result.
-
-Please rate how much do you agree or disagree with each of the following characterization for each version of the task.
+Verze “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
+Ohodnoťte prosím do jaké míry souhlasíte či nesouhlasíte s následujícími výroky o každé verzi úkolu.
 """
 
-debriefquest1 = "How much do you agree that the BEFORE version of the task ..."
-debriefquest2 = "How much do you agree that the AFTER version of the task ..."
-debriefscale1 = "completely disagree"
-debriefscale2 = "disagree"
-debriefscale3 = "agree"
-debriefscale4 = "completely agree"
+debriefquest1 = "Do jaké míry souhlasíte s tím, že verze PŘED ..."
+debriefquest2 = "Do jaké míry souhlasíte s tím, že verze PO ..."
+debriefscale1 = "zcela nesouhlasím"
+debriefscale2 = "nesouhlasím"
+debriefscale3 = "souhlasím"
+debriefscale4 = "zcela souhlasím"
 
-debriefdimensions = ["... required attention",
-                     "... required logical thinking",
-                     "... enabled cheating",
-                     "... made overreporting correct predictions acceptable",
-                     "... the die roll was randomly generated"]
+debriefdimensions = ["... vyžadovala pozornost",
+                     "... vyžadovala logické myšlení",
+                     "... umožňovala podvádění",
+                     "... umožňovala ospravedlnit zveličení uhodnutých hodů",
+                     "... hod kostkou byl generován náhodně"]
 
 
 
