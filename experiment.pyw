@@ -8,7 +8,6 @@ sys.path.append(os.path.join(os.getcwd(), "Stuff"))
 
 from gui import GUI
 
-from questionnaire import Prosociality, Values1, Values2, Values3
 from quest import QuestInstructions, Hexaco
 from intros import Intro, Ending
 from demo import Demographics
@@ -17,6 +16,7 @@ from cheating import EndCheating
 from debriefcheating import DebriefCheating
 from debriefing import Debriefing
 from lottery import Lottery
+from anchoring import AnchoringInstructions1, Comparison1, AnchoringInstructions2, Comparison2
 
 
 frames = [Intro,
@@ -28,8 +28,13 @@ frames = [Intro,
           BlockThree,
           EndCheating,
           Lottery,
+          AnchoringInstructions1,
+          Comparison1,
+          AnchoringInstructions2,
+          Comparison2,
           QuestInstructions,
           Hexaco,
+          Demographics,
           DebriefCheating,
           Debriefing,
           Ending

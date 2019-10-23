@@ -23,7 +23,7 @@ CURRENCY = "Kč"
 continuetext = "Pokračovat"
 
 debrieftext = """
-Jak bylo uvedeno výše, úkol s kostkou měl dvě verze:
+Jak bylo uvedeno dříve, úkol s kostkou měl dvě verze:
 
 Verze “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
@@ -41,7 +41,8 @@ debriefdimensions = ["... vyžadovala pozornost",
                      "... vyžadovala logické myšlení",
                      "... umožňovala podvádění",
                      "... umožňovala ospravedlnit zveličení uhodnutých hodů",
-                     "... hod kostkou byl generován náhodně"]
+                     "... sestávala z náhodně generovaných hodů kostkou"]
+
 
 
 
@@ -52,7 +53,7 @@ class DebriefCheating(ExperimentFrame):
     def __init__(self, root):
         super().__init__(root)
 
-        self.text = Text(self, height = 11, width = 90, relief = "flat", font = "helvetica 15", wrap = "word")
+        self.text = Text(self, height = 8, width = 90, relief = "flat", font = "helvetica 15", wrap = "word")
         self.text.insert("1.0", debrieftext)
         self.text["state"] = "disabled"
         self.text.grid(row = 1, column = 1)
