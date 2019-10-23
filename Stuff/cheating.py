@@ -21,11 +21,11 @@ FEE = 25
 # TEXTS
 
 continuetext = "Pokračovat"
-oddtext = "Lichá (1,3,5)"
-eventext = "Sudá (2,4,6)"
+oddtext = "Liché (1, 3 nebo 5)"
+eventext = "Sudé (2, 4 nebo 6)"
 rolltext = "Hodit kostkou"
 correcttext = "Správně"
-incorrecttext = "Špatně"    
+incorrecttext = "Špatně"  
 predictiontext = "Zvolil jsem možnost"
 
 treatmenttext = '''Kolo {}
@@ -33,53 +33,54 @@ treatmenttext = '''Kolo {}
 Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností, zapamatujte si ji, a poté klikněte na tlačítko Hodit kostkou.
 '''
 
-treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste nic v tomto kole."
+treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste v tomto kole nic."
 
 controltext = """Kolo {}
 
-Máte za úkol se rozhodnout, zda padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a klikněte na tlačítko Hodit kostkou.
+Máte za úkol se uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a poté klikněte na tlačítko Hodit kostkou.
 """
 
 controltext2 = "V tomto kole byla vaše předpověď {}"
 wintext = "správná a vydělali jste {} Kč."
-losstext = "špatná a nevydělali jste nic."
+losstext = "špatná a nevydělali jste možných {} Kč."
 
 
-freetext = """Toto je konec {} kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {} Kč.
+freetext = """Toto je konec {} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {} kolo s dvanácti pokusy. Pro toto kolo máte možnost si zvolit jednu z následujících možností:
+Nyní vás čeká {} blok s dvanácti koly. Pro tento blok máte možnost si zvolit jednu z následujících možností:
 - verze PŘED  
 - verze PO.
 """
 
-feetext = """Toto je konec {{}} kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {{}} Kč.
+
+
+
+feetext = """Toto je konec {{}} bloku o dvanácti pokusech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {{}} kolo s dvanácti pokusy. Pro toto kolo máte možnost zvolit si jednu z uvedených verzí. Volba PŘED je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto kole.
-- verze PŘED a zaplatím {} Kč
-- verze PO a zaplatím 0 Kč.
+Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba PO je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto kole.
+- verze PO a zaplatím {} Kč
+- verze PŘED a zaplatím 0 Kč.
 """.format(FEE, FEE, FEE)
-
-third = ["druhého", "třetí"]
-fourth = ["třetího", "čtvrté"]
 
 # buttons
 controlchoicetext = "verze PŘED"
-treatmentchoicetext = "verze PO" 
+treatmentchoicetext = "verze PO"  
 
 
-intro_block_5 = """Toto je konec čtvrtého kola o dvanácti pokusech. Pokud bude toto kolo vylosováno, obdržíte {{}} Kč.
+intro_block_5 = """Toto je konec čtvrtého bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
-Nyní vás čeká páté, poslední kolo s dvanácti pokusy. Úkol má opět dvě verze:
+Nyní vás čeká pátý, poslední bloko s dvanácti koly. Úkol má opět dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
@@ -100,42 +101,44 @@ estimatext = """Jak jste zaznamenali, úkol měl dvě verze:
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Odhadněte, kolik % účastníků si zvolilo verzi PŘED a kolik hodů z 12 průměrně uhodli a kolik % účastníků si zvolilo verzi PO a kolik hodů z 12 průměrně uhodli.
+Odhadněte, kolik % účastníků si zvolilo verzi “PŘED” a kolik hodů z 12 průměrně uhodli a kolik % účastníků si zvolilo verzi “PO” a kolik hodů z 12 průměrně uhodli.
 """
 
 beforeEstimate = "% účastníků zvolilo verzi “PŘED” a uhodli průměrně"
 afterEstimate = "% účastníků zvolilo verzi “PO” a uhodli průměrně"
 
- 
+
 intro_block_1 = """
-V následujícím úkolu máte uhodnout, jestli na virtuální kostce na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 2 a 3. Sudá čísla jsou jsou 2, 4 a 6. 
+V následujícím úkolu budete hádat, jestli na virtuální kostce na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 2 a 3. Sudá čísla jsou jsou 2, 4 a 6. 
 
-Budete hádat v pěti kolech po dvanácti pokusech. Po každém kole bude krátká přestávka.
+Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. Po každém bloku bude krátká přestávka.
 
-Uhodnete-li první hod, získáte 5 Kč, uhodnete-li druhý, získáte 10 Kč, uhodnete-li třetí, získáte 15 Kč a tak dále, za každý další uhodnutý hod 5 Kč navíc. Za uhodnutý dvanáctý hod tedy získáte 60 Kč.
+Uhodnete-li hod v bloku, získáte 5 Kč, uhodnete-li další, získáte za něj dalších 10 Kč, uhodnete-li další hod, získáte za něj dalších 15 Kč a tak dále, za každý další uhodnutý hod získáte navíc částku o 5 Kč vyšší, než byla předchozí odměna. Pokud tedy uhodnete všech 12 hodů, za poslední dvanáctý uhodnutý hod získáte 60 Kč a celkem získáte 390 Kč.
 
-Poté, co dokončíte všech pět kol, bude jedno kolo náhodně vybráno. Obdržíte pouze peníze, které jste vydělali v tomto vybraném kole. Pokud správně uhodnete všech dvanáct hodů v daném kole, a toto kolo je později vybráno, obdržíte 390. Počet správně uhodnutých hodů v ostatních kolech nijak neovlivní množství peněz, které obdržíte.
+Poté, co dokončíte všech pět bloků, bude jeden blok náhodně vylosován. Obdržíte pouze peníze, které jste vydělali v tomto vylosovaném bloku. Pokud správně uhodnete všech dvanáct hodů v daném bloku, a tento blok bude později vylosován, obdržíte 390 Kč. Počet správně uhodnutých hodů v ostatních blocích nijak neovlivní množství peněz, které obdržíte.
 
 Abychom ověřili, že rozumíte instrukcím, prosím odpovězte na následující otázku:
-Když správně uhodnete 7 hodů z 12 v prvním kole, 5 hodů z 12 ve druhém kole, a 2 hody z 12 ve třetím kole a ve čtvrtém a pátém neuhodnete nic, a třetí kolo je poté vybráno, kolik peněz obdržíte?
+Když správně uhodnete 7 hodů z 12 v prvním bloku, 5 hodů z 12 ve druhém bloku, 2 hody z 12 ve třetím bloku a ve čtvrtém a pátém bloku neuhodnete žádný hod, a poté je vylosováno třetí kolo, kolik peněz obdržíte?
 """
 
-wrong_answer = "{} Kč je chybná odpověď, správná odpověď je 15 Kč. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 15 = 5 + 10 Kč."
-correct_answer = "15 Kč je správná odpověď. Bylo zvoleno třetí kolo, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 15 = 5 + 10 Kč."
+wrong_answer = "{} Kč je chybná odpověď, správná odpověď je 15 Kč. Byl vylosován třetí blok, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 5 + 10 = 15 Kč."
+correct_answer = "15 Kč je správná odpověď. Byl vylosován třetí blok, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 5 + 10 = 15 Kč."
 
-second_check_question = "Dříve než začnete, odhadněte, kolik hodů správně uhodnete ve zvoleném kole, ve kterém získáte peníze."
+second_check_question = "Dříve než začnete, zkuste odhadnout, kolik hodů správně uhodnete ve vylosovaném bloku."
 prediction_label = "správných předpovědí"
 wrong_trials = "V jednom kole je pouze 12 hodů!"
 
+
 intro_block_2 = """
-Toto je konec prvního kola s dvanácti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč. Nyní začne druhé kolo s dvanácti hody.
+Toto je konec prvního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč. Nyní začne druhé kolo s dvanácti hody.
 """
 
-endtext = """Toto je konec posledního kola s dvanácti hody. Pokud bude toto kolo vybráno, obdržíte {} Kč.
+endtext = """Toto je konec posledního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč.
 
 Toto je konec úkolu s kostkou.
 
 """
+
 
 
 
@@ -281,7 +284,8 @@ class Cheating(ExperimentFrame):
         elif "control" in self.condition:
             win = (self.response == "odd" and self.currentRoll in (1,3,5)) or (
                 self.response == "even" and self.currentRoll in (2,4,6))
-            text = wintext.format(self.rewards[self.root.wins[self.blockNumber]]) if win else losstext
+            text = wintext if win else losstext
+            text = text.format(self.rewards[self.root.wins[self.blockNumber]])
             if win:
                 self.root.wins[self.blockNumber] += 1
             self.bottomText.insert("1.0", controltext2.format(text))
@@ -490,7 +494,7 @@ class Estimate(ExperimentFrame):
 
 class CheatingInstructions(InstructionsFrame):
     def __init__(self, root):
-        super().__init__(root, text = intro_block_1, height = 18, font = 16)
+        super().__init__(root, text = intro_block_1, height = 23, font = 15)
 
         self.predictionVar = StringVar()
         self.checkVar = StringVar()
@@ -499,28 +503,28 @@ class CheatingInstructions(InstructionsFrame):
                                  highlightcolor = "white")
         self.checkFrame.grid(row = 2, column = 1)
         self.entry = ttk.Entry(self.checkFrame, textvariable = self.checkVar, width = 10, justify = "right",
-                               font = "helvetica 16", validate = "key", validatecommand = self.vcmd)
+                               font = "helvetica 15", validate = "key", validatecommand = self.vcmd)
         self.entry.grid(row = 2, column = 1, padx = 6)
         self.currencyLabel = ttk.Label(self.checkFrame, text = "Kč", font = "helvetica 16",
                                        background = "white")
         self.currencyLabel.grid(row = 2, column = 2, sticky = NSEW)
 
-        self.lowerText = Text(self, font = "helvetica 16", relief = "flat", background = "white",
+        self.lowerText = Text(self, font = "helvetica 15", relief = "flat", background = "white",
                               width = 90, height = 3, wrap = "word", highlightbackground = "white")
         self.lowerText.grid(row = 3, column = 1, pady = 15)
         self.lowerText["state"] = "disabled"
 
-        self.bottomText = Text(self, font = "helvetica 16", relief = "flat", background = "white",
+        self.bottomText = Text(self, font = "helvetica 15", relief = "flat", background = "white",
                                width = 90, height = 2, wrap = "word", highlightbackground = "white",
                                state = "disabled")
         self.bottomText.grid(row = 4, column = 1)
         self.bottomAnswers = Canvas(self, height = 40, background = "white", highlightbackground = "white",
                                     highlightcolor = "white")
         self.bottomAnswers.grid(row = 5, column = 1)
-        self.predictionsLab = ttk.Label(self.bottomAnswers, text = prediction_label, font = "helvetica 16",
+        self.predictionsLab = ttk.Label(self.bottomAnswers, text = prediction_label, font = "helvetica 15",
                                         background = "white", foreground = "white")
         self.predictionsLab.grid(row = 0, column = 1, sticky = NSEW, pady = 12)
-        self.bottomMistakes = Text(self, font = "helvetica 16", relief = "flat", background = "white",
+        self.bottomMistakes = Text(self, font = "helvetica 15", relief = "flat", background = "white",
                                    width = 90, height = 1, wrap = "word", highlightbackground = "white",
                                    state = "disabled", foreground = "red")
         self.bottomMistakes.tag_config("centered", justify = "center")
