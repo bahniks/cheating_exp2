@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.getcwd(), "Stuff"))
 
 from gui import GUI
 
-from quest import QuestInstructions, Hexaco
+from hexaco import Hexaco
 from intros import Intro, Ending
 from demo import Demographics
 from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructions3, BlockThree
