@@ -74,10 +74,13 @@ class Lottery(ExperimentFrame):
         self.rowconfigure(3, weight = 1)
         self.rowconfigure(4, weight = 1)
         self.rowconfigure(5, weight = 1)
-        self.rowconfigure(6, weight = 4)        
+        self.rowconfigure(6, weight = 4)
+
+        self.numberOfRolls = 0
 
 
     def roll(self):
+        self.numberOfRolls += 1
         self.nextRoll["state"] = "disabled"
         self.endRolls["state"] = "disabled"
         self.die.create_rectangle((5, 5, self.diesize - 5, self.diesize - 5),
@@ -97,12 +100,12 @@ class Lottery(ExperimentFrame):
             self.currentReward *= 2
             if self.currentReward < self.maximumReward:
                 self.bottomText.insert("1.0", winningText.format(self.currentReward))
-        if self.currentRoll % 2 == 1:
+                self.nextRoll["state"] = "!disabled"
+            elif self.currentReward >= self.maximumReward:
+                self.bottomText.insert("1.0", maximumText.format(self.maximumReward))        
+        elif self.currentRoll % 2 == 1:
+            self.currentReward = 0
             self.bottomText.insert("1.0", losingText)
-        elif self.currentReward >= self.maximumReward:
-            self.bottomText.insert("1.0", maximumText.format(self.maximumReward))
-        else:
-            self.nextRoll["state"] = "!disabled"
         self.bottomText["state"] = "disabled"
         self.update()        
         self.endRolls["state"] = "!disabled"
@@ -132,7 +135,7 @@ class Lottery(ExperimentFrame):
         
                    
     def write(self):
-        self.file.write("\t".join(map(str, self.id + str(self.currentReward))) + "\n")
+        self.file.write("\t".join([self.id, str(self.numberOfRolls), str(self.currentReward)]) + "\n")
         
 
 
