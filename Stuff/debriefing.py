@@ -36,14 +36,13 @@ class Debriefing(ExperimentFrame):
 
         self.file.write("Debriefing\n")
 
-        if COUNTRY == "CZECHIA":
-            self.label = Text(self, wrap = "word", font = "helvetica 13",
-                              relief = "flat", height = 1, cursor = "arrow",
-                              selectbackground = "white", selectforeground = "black")
-            self.label.insert("1.0", czech, "center")
-            self.label.tag_config("center", justify = "center")
-            self.label.config(state = "disabled")
-            self.label.grid(column = 1, row = 0)
+        self.label = Text(self, wrap = "word", font = "helvetica 13",
+                          relief = "flat", height = 1, cursor = "arrow",
+                          selectbackground = "white", selectforeground = "black")
+        self.label.insert("1.0", czech, "center")
+        self.label.tag_config("center", justify = "center")
+        self.label.config(state = "disabled")
+        self.label.grid(column = 1, row = 0)
 
 
         self.question1 = Question(self, q1, alines = 4)
