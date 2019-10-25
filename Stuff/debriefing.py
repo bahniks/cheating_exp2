@@ -18,13 +18,12 @@ from gui import GUI
 # TEXTS #
 #########
 
-q1 = "In this and the following part, we are interested in finding out your opinion about the experiment. Please write down your opinion in a few sentences."
-q2 = "Do you have any comments about the course of the experiment? Were the instructions clear? Was the user interface easy to follow? Do you have any comments regarding the behavior of experimenters? Is there anything you would do differently?"
-q3 = "In your opinion, what was the aim of the task where you had to predict whether odd or even number would be rolled on a die? Please state, why you chose in this task the way you did."
-q4 = "In your opinion, what was the aim of the task, where you had the option to donate money to a charity? Please state, why you chose in this task the way you did."
-q5 = "Do you think it would be immoral to overreport the number of correctly predicted die rolls if given the chance in the dice rolling task in order to earn more money from the experimenter? Please also provide the reason for your answer."
+q1 = "V této a následující části máme zájem zjistit vaše názory na tento experiment. Prosím, napište svůj názor v několika bodech či větách."
+q2 = "Máte nějaké připomínky k průběhu experimentu? Byly pokyny jasné? Bylo snadné sledovat uživatelské rozhraní? Máte nějaké připomínky týkající se chování experimentátorů? Existuje něco, co byste udělali jinak?"
+q3 = "Jaký byl podle vašeho názoru cíl úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché nebo sudé číslo? Uveďte prosím, proč jste se v této úloze zachovali tak, jak jste se zachovali."
+q4 = "Myslíte si, že jste správně odhadli, co je v experimentu zkoumáno? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
+q5 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
 
-czech = "You can answer these questions in Czech if you prefer so."
 
 ##################################################################################################################
 
@@ -36,20 +35,11 @@ class Debriefing(ExperimentFrame):
 
         self.file.write("Debriefing\n")
 
-        self.label = Text(self, wrap = "word", font = "helvetica 13",
-                          relief = "flat", height = 1, cursor = "arrow",
-                          selectbackground = "white", selectforeground = "black")
-        self.label.insert("1.0", czech, "center")
-        self.label.tag_config("center", justify = "center")
-        self.label.config(state = "disabled")
-        self.label.grid(column = 1, row = 0)
-
-
         self.question1 = Question(self, q1, alines = 4)
         self.question2 = Question(self, q2, alines = 4, qlines = 3)
         self.question3 = Question(self, q3, alines = 4)
         self.question4 = Question(self, q4, alines = 4)
-        self.question5 = Question(self, q5, alines = 4, qlines = 3)
+        self.question5 = Question(self, q5, alines = 4)
 
         self.question1.grid(row = 1, column = 1, sticky = "w")
         self.question2.grid(row = 2, column = 1, sticky = "w")
