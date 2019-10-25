@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.getcwd(), "Stuff"))
 
 from gui import GUI
 
-from hexaco import Hexaco
+from hexaco import Hexaco, HexacoInstructions
 from intros import Intro, Ending
 from demo import Demographics
 from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructions3, BlockThree
@@ -32,7 +32,7 @@ frames = [Intro,
           Comparison1,
           AnchoringInstructions2,
           Comparison2,
-          QuestInstructions,
+          HHexacoInstructions,
           Hexaco,
           Demographics,
           DebriefCheating,

@@ -11,8 +11,6 @@ import os
 
 from common import ExperimentFrame, InstructionsFrame, read_all, Measure
 from gui import GUI
-from constants import COUNTRY
-
 
 
 
