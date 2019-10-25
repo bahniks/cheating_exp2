@@ -14,15 +14,17 @@ from gui import GUI
 
 #introText = "ted se budete ucastnit loterie"
 
-instructions = """V této úloze budete házet kostkou, dokud vám nepadne liché číslo.
-Jakmile padne liché číslo, úloha končí a vám zůstává vaše dosažená výhra.
+instructions = """V této úloze můžete vyhrát peníze.
+Můžete se rozhodnout, že hodíte kostkou.
 Vaše počáteční výhra je {} Kč a tato výhra se zdvojnásobí pokaždě, když vám padne sudé číslo.
+Pokud padne liché číslo, úloha končí a výhru ztrácíte.
 Maximálně můžete takto vyhrát {} Kč.
+Pokud zmáčknete tlačítko 'Ukončit házení', úlohu ukončíte a odnesete si dosaženou výhru.
 """
 
 winningText = "Vaše současná výhra je: {} Kč"
-
-losingText = "Tímto úloha končí. Vyhráli jste: {} Kč"
+losingText = "Tímto úloha končí. Výhru jste ztratili."
+maximumText = "Více již vyhrát nemůžete. Tímto úloha končí. Vyhráli jste: {} Kč"
 
 class Lottery(ExperimentFrame):
     def __init__(self, root):
@@ -34,7 +36,7 @@ class Lottery(ExperimentFrame):
         self.fakeRolling = True # False for testing
         self.diesize = 240
         self.startingReward = 5
-        self.maximumReward = 320
+        self.maximumReward = 1280
         #######################
 
         self.width = self.root.screenwidth
@@ -42,27 +44,30 @@ class Lottery(ExperimentFrame):
 
         self.file.write("Lottery\n")
 
-        self.upperText = Text(self, height = 5, width = 80, relief = "flat", font = "helvetica 15",
+        self.upperText = Text(self, height = 7, width = 80, relief = "flat", font = "helvetica 18",
                               wrap = "word")
         self.upperText.insert("1.0", instructions.format(self.startingReward, self.maximumReward))
         self.upperText["state"] = "disabled"
         self.die = Canvas(self, highlightbackground = "white", highlightcolor = "white",
                           background = "white", width = self.diesize, height = self.diesize)
-        self.bottomText = Text(self, height = 3, width = 80, relief = "flat", font = "helvetica 15",
+        self.bottomText = Text(self, height = 3, width = 80, relief = "flat", font = "helvetica 18",
                                wrap = "word")
         self.currentReward = self.startingReward
         self.bottomText.insert("1.0", winningText.format(self.currentReward))
         self.bottomText["state"] = "disabled"
-        ttk.Style().configure("TButton", font = "helvetica 15")
-        self.next = ttk.Button(self, text = "Hodit kostkou", command = self.roll)
+        ttk.Style().configure("TButton", font = "helvetica 18")
+        self.nextRoll = ttk.Button(self, text = "Hodit kostkou", command = self.roll, width = 14)
+        self.endRolls = ttk.Button(self, text = "Ukončit házení", command = self.end, width = 14)
          
-        self.upperText.grid(column = 1, row = 1)
-        self.die.grid(column = 1, row = 3, pady = 40)
-        self.bottomText.grid(column = 1, row = 4)
-        self.next.grid(row = 5, column = 1)
+        self.upperText.grid(column = 1, row = 1, columnspan = 2)
+        self.die.grid(column = 1, row = 3, pady = 40, columnspan = 2)
+        self.bottomText.grid(column = 1, row = 4, columnspan = 2)
+        self.nextRoll.grid(row = 5, column = 1, sticky = E, padx = 50)
+        self.endRolls.grid(row = 5, column = 2, sticky = W, padx = 50)
 
         self["highlightbackground"] = "white"
         self.columnconfigure(1, weight = 1)
+        self.columnconfigure(2, weight = 1)
         self.rowconfigure(0, weight = 3)
         self.rowconfigure(1, weight = 1)
         self.rowconfigure(2, weight = 1)
@@ -73,7 +78,8 @@ class Lottery(ExperimentFrame):
 
 
     def roll(self):
-        self.next["state"] = "disabled"
+        self.nextRoll["state"] = "disabled"
+        self.endRolls["state"] = "disabled"
         self.die.create_rectangle((5, 5, self.diesize - 5, self.diesize - 5),
                                   fill = "white", tag = "die", outline = "black", width = 5)
         # fake rolling
@@ -91,14 +97,20 @@ class Lottery(ExperimentFrame):
             self.currentReward *= 2
             if self.currentReward < self.maximumReward:
                 self.bottomText.insert("1.0", winningText.format(self.currentReward))
-        if self.currentRoll % 2 == 1 or self.currentReward >= self.maximumReward:
-            self.bottomText.insert("1.0", losingText.format(self.currentReward))
-            self.next["text"] = "Pokračovat"
-            self.next["command"] = self.nextFun
-            self.root.texts["lottery"] = self.currentReward
+        if self.currentRoll % 2 == 1:
+            self.bottomText.insert("1.0", losingText)
+        elif self.currentReward >= self.maximumReward:
+            self.bottomText.insert("1.0", maximumText.format(self.maximumReward))
+        else:
+            self.nextRoll["state"] = "!disabled"
         self.bottomText["state"] = "disabled"
-        self.update()
-        self.next["state"] = "!disabled"
+        self.update()        
+        self.endRolls["state"] = "!disabled"
+
+
+    def end(self):
+        self.root.texts["lottery"] = self.currentReward
+        self.nextFun()
 
 
     def createDots(self, x0, y0, num):
@@ -123,11 +135,8 @@ class Lottery(ExperimentFrame):
         self.file.write("\t".join(map(str, self.id + str(self.currentReward))) + "\n")
         
 
-#LotteryInstructions = (InstructionsFrame, {"text": introText, "height": 5})
-
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([#LotteryInstructions,
-         Lottery
+    GUI([Lottery
          ])
