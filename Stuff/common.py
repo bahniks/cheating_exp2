@@ -286,7 +286,7 @@ class Measure(Canvas):
 
 def read_all(file):
     text = ""
-    with open(os.path.join(os.path.dirname(__file__), file)) as f:
+    with open(os.path.join(os.path.dirname(__file__), file), encoding = "utf-8") as f:
         for line in f:
             text += line.rstrip(" \t")
     return text

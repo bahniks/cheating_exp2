@@ -185,7 +185,7 @@ class Likert(Canvas):
 class Hexaco(Quest):
     def __init__(self, root):
         super().__init__(root, 9, "hexaco.txt", "Hexaco", instructions = hexacoinstructions, width = 80,
-                         left = "strongly disagree", right = "strongly agree", checks = 3,
+                         left = "silně nesouhlasím", right = "silně souhlasím", checks = 3,
                          height = 2, options = 5, center = True)
 
 
