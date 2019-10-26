@@ -14,7 +14,7 @@ from constants import BONUS
 ################################################################################
 # TEXTS
 questintro = """
-V následující části studie odpovíte na několik otázek o sobě, vašich postojích a názorech. Tato část by měla trvat asi XXX minut.
+V následující části studie odpovíte na několik otázek o sobě, vašich postojích a názorech. Tato část by měla trvat asi 10 minut.
 
 Za účelem ověření, zda otázkám věnujete pozornost, je mezi otázkami umístěno i několik kontrol vaší pozornosti. Pokud správně odpovíte na všechny tyto kontroly, můžete získat dalších {} Kč.
 

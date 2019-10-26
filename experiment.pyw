@@ -12,7 +12,7 @@ from quest import Hexaco, QuestInstructions
 from intros import Intro, Ending
 from demo import Demographics
 from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructions3, BlockThree
-from cheating import Instructions4, BlockFour, Estimate, Instructions5, BlockFive, EndCheating
+from cheating import Instructions4, BlockFour, Estimate, Instructions5, BlockFive, EndCheating, winning
 from debriefcheating import DebriefCheating
 from debriefing import Debriefing
 from lottery import Lottery
@@ -33,6 +33,7 @@ frames = [Intro,
           BlockFive,
           EndCheating,
           Lottery,
+          winning,
           AnchoringInstructions1,
           Comparison1,
           AnchoringInstructions2,

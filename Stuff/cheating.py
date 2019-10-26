@@ -58,8 +58,6 @@ Nyní vás čeká {} blok s dvanácti koly. Pro tento blok máte možnost si zvo
 """
 
 
-
-
 feetext = """Toto je konec {{}} bloku o dvanácti pokusech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
@@ -142,6 +140,13 @@ Toto je konec úkolu s kostkou.
 
 third = ("druhého", "třetí")
 fourth = ("třetího", "čtvrté")
+
+
+winningInformation = """
+V úloze s házením kostek byl náhodně vybrán blok {}.
+
+Vyhráli jste proto {} Kč.
+"""
 
 
 
@@ -616,6 +621,20 @@ BlockFive = (Cheating, {"block": 5})
 EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win5"]})
 
 
+class Winning(InstructionsFrame):
+    def __init__(self):
+        pass
+
+    def __call__(self, root):
+        win = random.randint(1, 5)
+        root.texts["dice"] = root.texts["win{}".format(win)]
+        text = winningInformation.format(win, root.texts["dice"])        
+        super().__init__(root, text, height = 5)
+        return self
+
+winning = Winning()
+
+
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
@@ -631,5 +650,6 @@ if __name__ == "__main__":
          Instructions5,
          BlockFive,
          EndCheating,
+         winning,
          DebriefCheating
          ])
