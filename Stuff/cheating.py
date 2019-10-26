@@ -456,7 +456,7 @@ class Estimate(ExperimentFrame):
         self.roolsBefore.grid(column = 4, row = 3, pady = 10)
         self.roolsAfter.grid(column = 4, row = 4)
 
-        self.warning = ttk.Label(self, text = "Odpověď musí být číslo!\n(pro desetinná místa použijte tečku)", font = "helvetica 18",
+        self.warning = ttk.Label(self, text = "\n", font = "helvetica 18",
                                  background = "white", foreground = "white", justify = "center", state = "disabled")
         self.warning.grid(row = 5, column = 1, columnspan = 5)
 
@@ -477,13 +477,22 @@ class Estimate(ExperimentFrame):
         try:
             float(self.beforePercVar.get())
             float(self.afterPercVar.get())
-            float(self.beforeRollsVar.get())
-            float(self.afterRollsVar.get())
+            int(self.beforeRollsVar.get())
+            int(self.afterRollsVar.get())
+            if abs(float(self.beforePercVar.get()) + float(self.afterPercVar.get()) - 100) > 0.1:
+                self.warning["text"] = "Součet pravděpodobností se musí rovnat 100%\n"
+                self.warning["foreground"] = "red"
+                return False
+            elif int(self.beforeRollsVar.get()) > 12 or int(self.afterRollsVar.get()) > 12:
+                self.warning["text"] = "V jednom bloku je pouze 12 kol\n"
+                self.warning["foreground"] = "red"                
+            else: 
+                return True            
         except Exception:
+            self.warning["text"] = "Odpověď musí být číslo!\n(pro desetinná místa u procent použijte tečku)"
             self.warning["foreground"] = "red"
             return False
-        else:
-            return True
+
               
     def checkEntry(self, e):           
         if all([self.beforePercVar.get(), self.afterPercVar.get(),
