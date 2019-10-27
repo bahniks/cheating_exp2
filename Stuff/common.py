@@ -264,15 +264,16 @@ class Measure(Canvas):
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(3, weight = 1)
 
-        self.function = function
+        self.function = function            
         self.functionProcessed = False
         self.funconce = funconce
 
 
     def func(self):
         if not self.funconce or not self.functionProcessed:
-            self.function()
-            self.functionProcessed = True
+            if self.function:
+                self.function()
+                self.functionProcessed = True
 
 
     def write(self):

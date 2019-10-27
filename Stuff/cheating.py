@@ -25,19 +25,19 @@ oddtext = "Liché (1, 3 nebo 5)"
 eventext = "Sudé (2, 4 nebo 6)"
 rolltext = "Hodit kostkou"
 correcttext = "Správně"
-incorrecttext = "Špatně"  
-predictiontext = "Zvolil jsem možnost"
+incorrecttext = "Špatně"    
+predictiontext = "Zvolil jsem si, že na kostce padne liché nebo sudé číslo"
 
 treatmenttext = '''Kolo {}
 
-Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností, zapamatujte si ji, a poté klikněte na tlačítko Hodit kostkou.
+Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo, zapamatujte si svoji volbu a poté klikněte na tlačítko Hodit kostkou.
 '''
 
-treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali {} Kč nebo zda jste neuhodli a nevydělali jste v tomto kole nic."
+treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali v tomto kole {} Kč nebo zda jste neuhodli a nevydělali jste v tomto kole nic."
 
 controltext = """Kolo {}
 
-Máte za úkol se uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte jednu z možností a poté klikněte na tlačítko Hodit kostkou.
+Máte za úkol se uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo a poté klikněte na tlačítko Hodit kostkou.
 """
 
 controltext2 = "V tomto kole byla vaše předpověď {}"
@@ -66,7 +66,7 @@ Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvole
 
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba PO je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto kole.
+Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
 - verze PO a zaplatím {} Kč
 - verze PŘED a zaplatím 0 Kč.
 """.format(FEE, FEE, FEE)
@@ -81,7 +81,7 @@ intro_block_5 = """Toto je konec čtvrtého bloku o dvanácti kolech. Pokud bude
 Nyní vás čeká pátý, poslední bloko s dvanácti koly. Úkol má opět dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
 
 {}
 
@@ -99,7 +99,11 @@ estimatext = """Jak jste zaznamenali, úkol měl dvě verze:
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Odhadněte, kolik % účastníků si zvolilo verzi “PŘED” a kolik hodů z 12 průměrně uhodli a kolik % účastníků si zvolilo verzi “PO” a kolik hodů z 12 průměrně uhodli.
+Odhadněte, 
+- kolik % účastníků si zvolilo verzi “PŘED” a kolik hodů z 12 průměrně uhodli
+- kolik % účastníků si zvolilo verzi “PO” a kolik hodů z 12 průměrně uhodli.
+
+Ačkoli se při jednom rozhodnutí platil poplatek za verzi “PO”, nyní se ptáme na situaci, kdy za verzi “PO” žádný poplatek nebyl. 
 """
 
 beforeEstimate = "% účastníků zvolilo verzi “PŘED” a uhodli průměrně"
@@ -134,20 +138,16 @@ Toto je konec prvního bloku s dvanácti koly. Pokud bude tento blok vybrán, ob
 endtext = """Toto je konec posledního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč.
 
 Toto je konec úkolu s kostkou.
-
 """
-
 
 third = ("druhého", "třetí")
 fourth = ("třetího", "čtvrté")
-
 
 winningInformation = """
 V úloze s házením kostek byl náhodně vybrán blok {}.
 
 Vyhráli jste proto {} Kč.
 """
-
 
 
 ################################################################################
@@ -418,7 +418,7 @@ class Estimate(ExperimentFrame):
     def __init__(self, root):
         super().__init__(root)
 
-        self.text = Text(self, height = 10, font = "helvetica 18", wrap = "word", width = 80,
+        self.text = Text(self, height = 13, font = "helvetica 18", wrap = "word", width = 80,
                          relief = "flat")
         self.text.insert("1.0", estimatext)
         self.text["state"] = "disabled"
