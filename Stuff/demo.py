@@ -4,8 +4,11 @@ from tkinter import ttk
 
 import os
 
+from math import ceil
+
 from common import ExperimentFrame
 from gui import GUI
+from constants import BONUS
 
 
 class Demographics(ExperimentFrame):
