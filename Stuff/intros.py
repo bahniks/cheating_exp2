@@ -28,16 +28,16 @@ Nepokračujte prosím dokud vám výzkumný asistent nedá pokyn.
 
 
 czechending = """
-V úkolu s kostkou jste vydělali {} Kč. V loterii jste vydělali {} Kč. {} jste správně všechny kontroly pozornosti a tedy {} dalších {} Kč. Vaše odměna za tuto studii je tedy {} Kč. V pokladním dokumentu bude tedy uvedena částka {} Kč. Napište prosím tuto částku společně s číslem vašeho místa – {} na papír na vašem stole před vámi. 
+V úkolu s kostkou jste vydělali {} Kč. V loterii jste vydělali {} Kč. {} jste správně na všechny kontroly pozornosti a tedy {} dalších {} Kč. Vaše odměna za tuto studii je tedy {} Kč, zaokrouhleno na desítky nahoru {} Kč. Napište prosím tuto (zaokrouhlenou) částku společně s číslem vašeho místa – {} na papír na vašem stole před vámi. 
 
 Výsledky experimentu budou volně dostupné na stránkách PLESS a CEBEX, krátce po vyhodnocení dat a publikaci výsledků. Žádáme vás, abyste nesdělovali detaily tohoto výzkumu možným účastníkům, aby jejich volby a odpovědi nebyly ovlivněny a znehodnoceny.
   
-Zvedněte prosím ruku a některý z výzkumných asistentů přijde a ukončí experiment. Poté si můžete vzít všechny svoje věci, papír s číslem vašeho místa a odměnou, a bez toho, aniž byste rušili ostatní účastníky, se odeberte do vedlejší místnosti, kde obdržíte svoji odměnu. 
+Zvedněte prosím ruku a některý z výzkumných asistentů přijde a ukončí experiment. Poté si můžete vzít všechny svoje věci, papír s číslem vašeho místa a uvedenou odměnou, a bez toho, aniž byste rušili ostatní účastníky, se odeberte do vedlejší místnosti, kde obdržíte svoji odměnu. 
 
 Toto je konec experimentu. Děkujeme za vaši účast!
  
 CEBEX/PLESS labs
-"""
+""" 
 
 
 
@@ -47,7 +47,7 @@ CEBEX/PLESS labs
 ################################################################################
 
 
-updates = ["dice", "lottery_win", "attention1", "attention2", BONUS, "reward", "reward", "station"]
+updates = ["dice", "lottery_win", "attention1", "attention2", BONUS, "reward", "rounded_reward", "station"]
 
 
 

@@ -22,7 +22,7 @@ q1 = "V této a následující části máme zájem zjistit vaše názory na ten
 q2 = "Máte nějaké připomínky k průběhu experimentu? Byly pokyny jasné? Bylo snadné sledovat uživatelské rozhraní? Máte nějaké připomínky týkající se chování experimentátorů? Existuje něco, co byste udělali jinak?"
 q3 = "Jaký byl podle vašeho názoru cíl úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché nebo sudé číslo? Uveďte prosím, proč jste se v této úloze zachovali tak, jak jste se zachovali."
 q4 = "Myslíte si, že jste správně odhadli, co je v experimentu zkoumáno? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
-q5 = "Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi."
+q5 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
 q6 = "Nakolik důvěřujete tomu, že všechny vám sdělené informace byly pravdivé?"
 q6values = ["zcela důvěřuji", "spíše důvěřuji", "nejsem si jist", "spíše nedůvěřuji", "zcela nedůvěřuji"]
 

@@ -188,6 +188,16 @@ class Cheating(ExperimentFrame):
         self.bottomButtonFrame = Canvas(self, highlightbackground = "white", highlightcolor = "white",
                                         background = "white", height = 100)
 
+        self.infoWinnings = ttk.Label(self, text = "Současná výhra:\n0 Kč", font = "helvetica 15",
+                                      background = "white", justify = "right")
+        self.fillerLeft = Canvas(self, highlightbackground = "white", highlightcolor = "white",
+                                 background = "white", width = 200, height = 1)
+        self.fillerRight = Canvas(self, highlightbackground = "white", highlightcolor = "white",
+                                  background = "white", width = 200, height = 1)
+        self.infoWinnings.grid(row = 1, column = 2, sticky = NW)
+        self.fillerLeft.grid(column = 0, row = 0)
+        self.fillerRight.grid(column = 0, row = 0)
+
         self.upperText.grid(column = 1, row = 1)
         self.upperButtonFrame.grid(column = 1, row = 2)
         self.die.grid(column = 1, row = 3, pady = 40)
@@ -196,7 +206,9 @@ class Cheating(ExperimentFrame):
         self._createFiller()
 
         self["highlightbackground"] = "white"
+        self.columnconfigure(0, weight = 1)
         self.columnconfigure(1, weight = 1)
+        self.columnconfigure(2, weight = 1)
         self.rowconfigure(0, weight = 3)
         self.rowconfigure(1, weight = 1)
         self.rowconfigure(2, weight = 1)
@@ -364,6 +376,7 @@ class Cheating(ExperimentFrame):
         for child in self.bottomButtonFrame.winfo_children():
             child.grid_remove()
         self._createFiller()
+        self.infoWinnings["text"] = "Současná výhra:\n{} Kč".format(sum(self.rewards[:self.root.wins[self.blockNumber]]))
         self.update()
         sleep(self.pause_before_trial)
         self.run()
@@ -647,7 +660,7 @@ winning = Winning()
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([Instructions1,
+    GUI([#Instructions1,
          BlockOne,
          Instructions2,
          BlockTwo,

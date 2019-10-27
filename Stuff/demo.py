@@ -103,7 +103,6 @@ class Demographics(ExperimentFrame):
 
 
     def writeWinnings(self):
-        # to be included and updated
         options = os.path.join(os.path.dirname(os.path.dirname(__file__)), "options.txt")
         if os.path.exists(options):
             with open(options, mode = "r") as f:
@@ -117,42 +116,34 @@ class Demographics(ExperimentFrame):
         self.root.texts["station"] = station
         filename = os.path.splitext(os.path.basename(self.root.outputfile))[0]
         output = os.path.join(directory, filename + "_STATION_" + str(station) + ".txt")
-        if all([key in self.root.texts for key in ["dice", "charity", "donation",
-                                                   "lottery_win", "attention_checks"]]):
+        if all([key in self.root.texts for key in ["dice", "lottery_win", "attention_checks"]]):
             if self.root.texts["attention_checks"] > 0:
-                self.root.texts["attention1"] = " not"
-                self.root.texts["attention2"] = "did not earn"
+                self.root.texts["attention1"] = "Neodpověděli"
+                self.root.texts["attention2"] = "nevydělali"
             else:
-                self.root.texts["attention1"] = ""
-                self.root.texts["attention2"] = "earned"
+                self.root.texts["attention1"] = "Odpověděli"
+                self.root.texts["attention2"] = "vydělali"
             dice = self.root.texts["dice"]
-            charity = self.root.texts["charity"]
-            donation = self.root.texts["donation"]
             lottery = self.root.texts["lottery_win"]
             bonus = 0 if self.root.texts["attention_checks"] else BONUS
             with open(output, mode = "w", encoding = "utf-8") as infile:
-                reward = dice + lottery + bonus - donation
+                reward = dice + lottery + bonus
                 self.root.texts["reward"] = reward
-                if ROUNDING:
-                    reward = ceil((reward)/85)*100
-                    self.root.texts["rounded_reward"] = reward
-                if COUNTRY == "CZECHIA":
-                    infile.write("reward: " + str(reward) + CURRENCY + "\n\n")
-                else:
-                    infile.write("reward: " + str(reward) + CURRENCY + "(" + \
-                                 str( round(reward/EXCHANGE_RATE)) + "CZK)" "\n\n")
-                infile.write(charity + ": " + str(donation) + CURRENCY + "\n\n")
-                infile.write("dice: " + str(dice) + CURRENCY + "\n")
-                infile.write("lottery: " + str(lottery) + CURRENCY + "\n")
-                infile.write("bonus: " + str(bonus) + CURRENCY)
+                reward = int(ceil(reward/10)*10)
+                self.root.texts["rounded_reward"] = reward
+                infile.write("reward: " + str(reward) + "Kč\n\n")
+                infile.write("dice: " + str(dice) + "Kč\n")
+                infile.write("lottery: " + str(lottery) + "Kč\n")
+                infile.write("bonus: " + str(bonus) + "Kč")
             self.file.write("Winnings\n")
-            self.file.write(self.id + "\t" + str(reward) + "\t" + charity + "\t" + str(donation) + "\n\n")
+            self.file.write(self.id + "\t" + str(reward) + "\n\n")
 
 
     def write(self):
         self.file.write("Demographics\n")
         self.file.write("\t".join([self.id, self.sex.get(), self.age.get(), self.language.get(),
                                    self.student.get(), self.field.get()]) + "\n")
+        self.writeWinnings()
 
 
 if __name__ == "__main__":
