@@ -46,12 +46,12 @@ class Debriefing(ExperimentFrame):
         self.question6.question.grid(column = 0, row = 0, columnspan = 4, pady = 6)
         self.question6.question["font"] = "helvetica 15"
 
-        self.question1.grid(row = 1, column = 1, sticky = "w")
-        self.question2.grid(row = 2, column = 1, sticky = "w")
-        self.question3.grid(row = 3, column = 1, sticky = "w")
-        self.question4.grid(row = 4, column = 1, sticky = "w")
-        self.question5.grid(row = 5, column = 1, sticky = "w")
-        self.question6.grid(row = 6, column = 1, sticky = "w")
+        self.question1.grid(row = 1, column = 1)
+        self.question2.grid(row = 2, column = 1)
+        self.question3.grid(row = 3, column = 1)
+        self.question4.grid(row = 4, column = 1)
+        self.question5.grid(row = 5, column = 1)
+        self.question6.grid(row = 6, column = 1)
         
         ttk.Style().configure("TButton", font = "helvetica 15")
         self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun)
@@ -72,7 +72,7 @@ class Debriefing(ExperimentFrame):
         self.rowconfigure(6, weight = 1)
         self.rowconfigure(7, weight = 1)
         self.rowconfigure(8, weight = 1)
-        self.rowconfigure(9, weight = 2)
+        self.rowconfigure(9, weight = 1)
 
         
     def check(self):

@@ -123,6 +123,7 @@ class Demographics(ExperimentFrame):
             else:
                 self.root.texts["attention1"] = "Odpověděli"
                 self.root.texts["attention2"] = "vydělali"
+            self.root.texts["bonus"] = BONUS
             dice = self.root.texts["dice"]
             lottery = self.root.texts["lottery_win"]
             bonus = 0 if self.root.texts["attention_checks"] else BONUS

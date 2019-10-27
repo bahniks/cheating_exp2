@@ -47,7 +47,7 @@ CEBEX/PLESS labs
 ################################################################################
 
 
-updates = ["dice", "lottery_win", "attention1", "attention2", BONUS, "reward", "rounded_reward", "station"]
+updates = ["dice", "lottery_win", "attention1", "attention2", "bonus", "reward", "rounded_reward", "station"]
 
 
 

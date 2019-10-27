@@ -188,7 +188,7 @@ class Cheating(ExperimentFrame):
         self.bottomButtonFrame = Canvas(self, highlightbackground = "white", highlightcolor = "white",
                                         background = "white", height = 100)
 
-        self.infoWinnings = ttk.Label(self, text = "Současná výhra:\n0 Kč", font = "helvetica 15",
+        self.infoWinnings = ttk.Label(self, text = "", font = "helvetica 15",
                                       background = "white", justify = "right")
         self.fillerLeft = Canvas(self, highlightbackground = "white", highlightcolor = "white",
                                  background = "white", width = 200, height = 1)
@@ -241,6 +241,7 @@ class Cheating(ExperimentFrame):
 
     def startTrial(self):
         self.time = perf_counter()
+        self.showWinnings()
         self.upperPart()
 
 
@@ -356,6 +357,9 @@ class Cheating(ExperimentFrame):
     def createText(self, x0, y0, num):
         self.die.create_text(x0, y0, text = str(num), font = "helvetica 70", tag = "die")
 
+    def showWinnings(self):
+        fee = FEE if conditions[self.blockNumber - 1] == "fee_treatment" else 0
+        self.infoWinnings["text"] = "Současná výhra:\n{} Kč".format(sum(self.rewards[:self.root.wins[self.blockNumber]]) - fee)
 
     def answer(self, answer = "NA"):
         t = perf_counter()
@@ -376,7 +380,7 @@ class Cheating(ExperimentFrame):
         for child in self.bottomButtonFrame.winfo_children():
             child.grid_remove()
         self._createFiller()
-        self.infoWinnings["text"] = "Současná výhra:\n{} Kč".format(sum(self.rewards[:self.root.wins[self.blockNumber]]))
+        self.showWinnings()
         self.update()
         sleep(self.pause_before_trial)
         self.run()
@@ -490,13 +494,13 @@ class Estimate(ExperimentFrame):
         try:
             float(self.beforePercVar.get())
             float(self.afterPercVar.get())
-            int(self.beforeRollsVar.get())
-            int(self.afterRollsVar.get())
+            float(self.beforeRollsVar.get())
+            float(self.afterRollsVar.get())
             if abs(float(self.beforePercVar.get()) + float(self.afterPercVar.get()) - 100) > 0.1:
                 self.warning["text"] = "Součet pravděpodobností se musí rovnat 100%\n"
                 self.warning["foreground"] = "red"
                 return False
-            elif int(self.beforeRollsVar.get()) > 12 or int(self.afterRollsVar.get()) > 12:
+            elif float(self.beforeRollsVar.get()) > 12 or float(self.afterRollsVar.get()) > 12:
                 self.warning["text"] = "V jednom bloku je pouze 12 kol\n"
                 self.warning["foreground"] = "red"                
             else: 
@@ -660,7 +664,7 @@ winning = Winning()
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([#Instructions1,
+    GUI([Instructions1,
          BlockOne,
          Instructions2,
          BlockTwo,
