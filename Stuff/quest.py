@@ -14,11 +14,12 @@ from constants import BONUS
 ################################################################################
 # TEXTS
 questintro = """
-V následující části studie odpovíte na několik otázek o sobě, vašich postojích a názorech. Tato část by měla trvat asi 10 minut.
+V následující části studie odpovíte na několik otázek o sobě, vašich postojích a názorech. Tato část by měla trvat asi 10-15 minut.
 
 Za účelem ověření, zda otázkám věnujete pozornost, je mezi otázkami umístěno i několik kontrol vaší pozornosti. Pokud správně odpovíte na všechny tyto kontroly, můžete získat dalších {} Kč.
 
-Každou otázku si proto pečlivě přečtěte. Snažte se však na otázky nemyslet příliš dlouho; první odpověď, která vám přijde na mysl, je obvykle nejlepší.
+Každou otázku si proto pečlivě přečtěte. Snažte se však na otázky nemyslet příliš dlouho; první odpověď, která vám přijde na mysl, je obvykle nejlepší. Na následujících stránkách najdete řadu prohlášení o vaší osobě.
+
 
 Pokud nerozumíte všem slovům v otázce, či otázce samotné, zkuste odpovědět podle svého nejlepšího rozumění. Nežádejte o pomoc výzkumné pracovníky, aby vám otázky nebo odpovědi vysvětlili.
 """.format(BONUS)
@@ -186,11 +187,11 @@ class Hexaco(Quest):
     def __init__(self, root):
         super().__init__(root, 9, "hexaco.txt", "Hexaco", instructions = hexacoinstructions, width = 80,
                          left = "silně nesouhlasím", right = "silně souhlasím", checks = 3,
-                         height = 2, options = 5, center = True)
+                         height = 3, options = 5, center = True)
 
 
 
-QuestInstructions = (InstructionsFrame, {"text": questintro, "height": 13})
+QuestInstructions = (InstructionsFrame, {"text": questintro, "height": 15})
 
 
 if __name__ == "__main__":

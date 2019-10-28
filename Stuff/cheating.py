@@ -57,16 +57,14 @@ Nyní vás čeká {} blok s dvanácti koly. Pro tento blok máte možnost si zvo
 - verze PO.
 """
 
-
 feetext = """Toto je konec {{}} bloku o dvanácti pokusech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
+Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte opět možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
 - verze PO a zaplatím {} Kč
 - verze PŘED a zaplatím 0 Kč.
 """.format(FEE, FEE, FEE)
@@ -76,9 +74,8 @@ controlchoicetext = "verze PŘED"
 treatmentchoicetext = "verze PO"  
 
 
-intro_block_5 = """Toto je konec čtvrtého bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
-
-Nyní vás čeká pátý, poslední bloko s dvanácti koly. Úkol má opět dvě verze:
+intro_block_5 = """
+Nyní vás čeká pátý, poslední blok s dvanácti koly. Úkol má opět dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
@@ -90,11 +87,14 @@ Máte nyní poslední možnost zvolit si jednu z následujících možností:
 - verze PO.
 """
 
-lowmanipulation = "V předchozím podobném experimentu si pouze 30% účastníků zvolilo verzi “PO”."
-highmanipulation = "V předchozím podobném experimentu si pouze 25% účastníků zvolilo verzi “PŘED”."
+lowmanipulation = "V předchozím podobném experimentu si pouze 30 % účastníků zvolilo verzi “PO”."
+highmanipulation = "V předchozím podobném experimentu si pouze 25 % účastníků zvolilo verzi “PŘED”."
 
 
-estimatext = """Jak jste zaznamenali, úkol měl dvě verze:
+estimatext = """
+Toto je konec čtvrtého bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {} Kč.
+
+Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
@@ -111,16 +111,16 @@ afterEstimate = "% účastníků zvolilo verzi “PO” a uhodli průměrně"
 
 
 intro_block_1 = """
-V následujícím úkolu budete hádat, jestli na virtuální kostce na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 2 a 3. Sudá čísla jsou jsou 2, 4 a 6. 
+V následujícím úkolu budete hádat, jestli na virtuální kostce (generátor náhodných čísel) na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 3 a 5. Sudá čísla jsou jsou 2, 4 a 6. 
 
-Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. Po každém bloku bude krátká přestávka.
+Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. Bloky se odlišují pravidly, dle nichž budete hádat hody kostkou. Po každém bloku bude krátká přestávka.
 
-Uhodnete-li hod v bloku, získáte 5 Kč, uhodnete-li další, získáte za něj dalších 10 Kč, uhodnete-li další hod, získáte za něj dalších 15 Kč a tak dále, za každý další uhodnutý hod získáte navíc částku o 5 Kč vyšší, než byla předchozí odměna. Pokud tedy uhodnete všech 12 hodů, za poslední dvanáctý uhodnutý hod získáte 60 Kč a celkem získáte 390 Kč.
+Uhodnete-li hod v bloku, získáte 5 Kč, uhodnete-li další, získáte za něj dalších 10 Kč, uhodnete-li další hod, získáte za něj dalších 15 Kč a tak dále. Za každý další uhodnutý hod získáte navíc částku o 5 Kč vyšší, než byla předchozí odměna. Pokud tedy uhodnete všech 12 hodů, za poslední dvanáctý uhodnutý hod získáte 60 Kč a celkem získáte 390 Kč.
 
-Poté, co dokončíte všech pět bloků, bude jeden blok náhodně vylosován. Obdržíte pouze peníze, které jste vydělali v tomto vylosovaném bloku. Pokud správně uhodnete všech dvanáct hodů v daném bloku, a tento blok bude později vylosován, obdržíte 390 Kč. Počet správně uhodnutých hodů v ostatních blocích nijak neovlivní množství peněz, které obdržíte.
+Poté, co dokončíte všech pět bloků, bude jeden blok náhodně vylosován. Obdržíte pouze peníze, které jste vydělali v tomto vylosovaném bloku. Pokud správně uhodnete všech dvanáct hodů v daném bloku, a tento blok bude později vylosován, obdržíte 390 Kč. Vaše výsledky v ostatních blocích nijak neovlivní množství peněz, které obdržíte.
 
 Abychom ověřili, že rozumíte instrukcím, prosím odpovězte na následující otázku:
-Když správně uhodnete 7 hodů z 12 v prvním bloku, 5 hodů z 12 ve druhém bloku, 2 hody z 12 ve třetím bloku a ve čtvrtém a pátém bloku neuhodnete žádný hod, a poté je vylosováno třetí kolo, kolik peněz obdržíte?
+Když správně uhodnete 7 hodů z 12 v prvním bloku, 5 hodů z 12 ve druhém bloku, 2 hody z 12 ve třetím bloku a ve čtvrtém a pátém bloku neuhodnete žádný hod, a poté je vylosován třetí blok, kolik peněz obdržíte?
 """
 
 wrong_answer = "{} Kč je chybná odpověď, správná odpověď je 15 Kč. Byl vylosován třetí blok, ve kterém jste správně uhodli 2 hody. Obdržíte tedy 5 + 10 = 15 Kč."
@@ -132,7 +132,7 @@ wrong_trials = "V jednom kole je pouze 12 hodů!"
 
 
 intro_block_2 = """
-Toto je konec prvního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč. Nyní začne druhé kolo s dvanácti hody.
+Toto je konec prvního bloku s dvanácti koly. Pokud bude tento blok vylosován, obdržíte {} Kč. Nyní začne druhý blok s dvanácti hody.
 """
 
 endtext = """Toto je konec posledního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč.
@@ -141,13 +141,14 @@ Toto je konec úkolu s kostkou.
 """
 
 third = ("druhého", "třetí")
-fourth = ("třetího", "čtvrté")
+fourth = ("třetího", "čtvrtý")
 
 winningInformation = """
 V úloze s házením kostek byl náhodně vybrán blok {}.
 
 Vyhráli jste proto {} Kč.
 """
+
 
 
 ################################################################################
@@ -435,9 +436,9 @@ class Estimate(ExperimentFrame):
     def __init__(self, root):
         super().__init__(root)
 
-        self.text = Text(self, height = 13, font = "helvetica 18", wrap = "word", width = 80,
+        self.text = Text(self, height = 17, font = "helvetica 18", wrap = "word", width = 80,
                          relief = "flat")
-        self.text.insert("1.0", estimatext)
+        self.text.insert("1.0", estimatext.format(self.root.texts["win4"]))
         self.text["state"] = "disabled"
         self.text.grid(column = 1, columnspan = 5, row = 1)
 
@@ -447,17 +448,17 @@ class Estimate(ExperimentFrame):
         self.afterRollsVar = StringVar()
         
         self.percEntryBefore = ttk.Entry(self, textvariable = self.beforePercVar, width = 5,
-                                         justify = "right", font = "helvetica 16")
+                                         justify = "right", font = "helvetica 18")
         self.percEntryAfter = ttk.Entry(self, textvariable = self.afterPercVar, width = 5,
-                                        justify = "right", font = "helvetica 16")
-        self.labelBefore = ttk.Label(self, text = beforeEstimate, font = "helvetica 16", background = "white")
-        self.labelAfter = ttk.Label(self, text = afterEstimate, font = "helvetica 16", background = "white")
+                                        justify = "right", font = "helvetica 18")
+        self.labelBefore = ttk.Label(self, text = beforeEstimate, font = "helvetica 18", background = "white")
+        self.labelAfter = ttk.Label(self, text = afterEstimate, font = "helvetica 18", background = "white")
         self.rollsEntryBefore = ttk.Entry(self, textvariable = self.beforeRollsVar, width = 5,
-                                          justify = "right", font = "helvetica 16")
+                                          justify = "right", font = "helvetica 18")
         self.rollsEntryAfter = ttk.Entry(self, textvariable = self.afterRollsVar, width = 5,
-                                         justify = "right", font = "helvetica 16")
-        self.roolsBefore = ttk.Label(self, text = "hodů", font = "helvetica 16", background = "white")
-        self.roolsAfter = ttk.Label(self, text = "hodů", font = "helvetica 16", background = "white")
+                                         justify = "right", font = "helvetica 18")
+        self.roolsBefore = ttk.Label(self, text = "hodů", font = "helvetica 18", background = "white")
+        self.roolsAfter = ttk.Label(self, text = "hodů", font = "helvetica 18", background = "white")
 
         self.percEntryBefore.bind("<KeyRelease>", self.checkEntry)
         self.percEntryAfter.bind("<KeyRelease>", self.checkEntry)
@@ -477,7 +478,7 @@ class Estimate(ExperimentFrame):
                                  background = "white", foreground = "white", justify = "center", state = "disabled")
         self.warning.grid(row = 5, column = 1, columnspan = 5)
 
-        ttk.Style().configure("TButton", font = "helvetica 15", width = 12)
+        ttk.Style().configure("TButton", font = "helvetica 18", width = 12)
 
         self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun, state = "disabled")
         self.next.grid(column = 1, columnspan = 5, row = 6, sticky = N)
@@ -488,7 +489,7 @@ class Estimate(ExperimentFrame):
         self.columnconfigure(6, weight = 1)
         self.rowconfigure(0, weight = 2)
         self.rowconfigure(5, weight = 1)
-        self.rowconfigure(6, weight = 1)
+        self.rowconfigure(6, weight = 2)
 
     def check(self):
         try:
@@ -636,7 +637,7 @@ Instructions1 = CheatingInstructions
 Instructions2 = (InstructionsFrame, {"text": intro_block_2, "height": 5, "update": ["win1"]})
 Instructions3 = (Selection, {"roundNum": 3, "update": ["win2"]})
 Instructions4 = (Selection, {"roundNum": 4, "update": ["win3"]})
-Instructions5 = (Selection, {"roundNum": 5, "update": ["win4"]})
+Instructions5 = (Selection, {"roundNum": 5})
 
 BlockOne = (Cheating, {"block": 1})
 BlockTwo = (Cheating, {"block": 2})

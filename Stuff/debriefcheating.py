@@ -20,10 +20,8 @@ CURRENCY = "Kč"
 ################################################################################
 # TEXTS
 
-continuetext = "Pokračovat"
-
 debrieftext = """
-Jak bylo uvedeno dříve, úkol s kostkou měl dvě verze:
+Jak bylo uvedeno několikrát dříve, úkol, kde jste odhadovali hody kostkou, měl dvě verze:
 
 Verze “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
@@ -65,7 +63,7 @@ class DebriefCheating(ExperimentFrame):
         self.frame2.grid(row = 3, column = 1)            
 
         ttk.Style().configure("TButton", font = "helvetica 15")
-        self.next = ttk.Button(self, text = continuetext, command = self.nextFun,
+        self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun,
                                state = "disabled")
         self.next.grid(row = 4, column = 1, sticky = N)
 

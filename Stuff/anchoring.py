@@ -24,7 +24,7 @@ items = [["price", "průměrná cena nového auta", "200 tisíc Kč", "900 tisí
          ["temperature", "průměrná roční teplota v Praze", "1°C", "25°C", "měsíce v roce", "průměrná teplota v Praze v měsíci {}", "v °C"],
          ["age", "průměrný věk současného českého poslance/poslankyně", "25", "80", "současného českého poslance/poslankyně", "věk poslance/poslankyně jména {}", "v letech"],
          ["population", "průměrná populace států v EU", "1 milion obyvatel", "80 milionů obyvatel", "státu EU", "počet obyvatel státu {}", "v milionech obyvatel"],
-         ["salary", "průměrný plat v ČR", "15 000 Kč", "90 000 Kč", "zaměstnání", "průměrný plat, který má {},", "v Kč"],
+         ["salary", "průměrná mzda v ČR", "15 000 Kč", "90 000 Kč", "zaměstnání", "průměrná mzda, kterou má {},", "v Kč"],
          ["distance", "průměrná vzdálenost hlavních měst evropských států od Prahy", "300 km", "2500 km", "hlavního města evropského státu (kromě Prahy)", "vzdálenost Prahy od města {}", "v km"],
          ["unemployment", "míra nezaměstnanosti v ČR", "1%", "10%", "kraje ČR", "míra nezaměstnanosti kraje {}", "v %"],
          ["weight", "průměrná hmotnost savce v pražské zoo", "1 kg", "3000 kg", "druhu savce", "hmotnost, kterou má {},", "v kg"],

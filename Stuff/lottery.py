@@ -12,11 +12,23 @@ from gui import GUI
 
 ################################################################################
 
-#introText = "ted se budete ucastnit loterie"
 
-instructions = """V této úloze můžete vyhrát peníze.
-Můžete se rozhodnout, že hodíte kostkou.
-Vaše počáteční výhra je {} Kč a tato výhra se zdvojnásobí pokaždě, když vám padne sudé číslo.
+lotteryinstructions = """
+V následující úloze “Loterie” můžete vyhrát peníze.
+
+Můžete se rozhodnout, že hodíte kostkou (zobrazení generátoru náhodných čísel).
+
+Vaše počáteční výhra je 5 Kč a tato výhra se zdvojnásobí pokaždé, když vám padne sudé číslo.
+Pokud padne liché číslo, úloha končí a výhru v úloze Loterie ztrácíte.
+Maximálně můžete takto vyhrát 1280 Kč.
+
+Kdykoli můžete zmáčknout tlačítko 'Ukončit házení', a tím úlohu Loterie ukončit a odnést si dosaženou výhru.
+"""
+
+
+
+instructions = """Můžete se rozhodnout, že hodíte kostkou.
+Vaše počáteční výhra je {} Kč a tato výhra se zdvojnásobí pokaždé, když vám padne sudé číslo.
 Pokud padne liché číslo, úloha končí a výhru ztrácíte.
 Maximálně můžete takto vyhrát {} Kč.
 Pokud zmáčknete tlačítko 'Ukončit házení', úlohu ukončíte a odnesete si dosaženou výhru.
@@ -25,6 +37,7 @@ Pokud zmáčknete tlačítko 'Ukončit házení', úlohu ukončíte a odnesete s
 winningText = "Vaše současná výhra je: {} Kč"
 losingText = "Tímto úloha končí. Výhru jste ztratili."
 maximumText = "Více již vyhrát nemůžete. Tímto úloha končí. Vyhráli jste: {} Kč"
+
 
 class Lottery(ExperimentFrame):
     def __init__(self, root):
@@ -138,8 +151,10 @@ class Lottery(ExperimentFrame):
         self.file.write("\t".join([self.id, str(self.numberOfRolls), str(self.currentReward)]) + "\n")
         
 
+LotteryInstructions = (InstructionsFrame, {"text": lotteryinstructions, "height": 12})
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([Lottery
+    GUI([LotteryInstructions,
+         Lottery
          ])
