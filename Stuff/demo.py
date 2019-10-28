@@ -140,13 +140,13 @@ class Demographics(ExperimentFrame):
                 infile.write("lottery: " + str(lottery) + "Kč\n")
                 infile.write("bonus: " + str(bonus) + "Kč")
             self.file.write("Winnings\n")
-            self.file.write(self.id + "\t" + str(reward) + "\n\n")
+            self.file.write(self.id + "\t" + str(reward) + "\n")
 
 
     def write(self):
         self.file.write("Demographics\n")
         self.file.write("\t".join([self.id, self.sex.get(), self.age.get(), self.language.get(),
-                                   self.student.get(), self.field.get()]) + "\n")
+                                   self.student.get(), self.field.get()]) + "\n\n")
         self.writeWinnings()
 
 
