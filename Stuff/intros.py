@@ -14,7 +14,7 @@ intro = """
 Vítejte na výzkumné studii pořádané ve spolupráci s Fakultou podnikohospodářskou Vysoké školy ekonomické v Praze. Tato studie se skládá z několika různých úkolů a otázek. Níže je uveden přehled toho, co vás čeká:
 
 1) Hod kostkou: vaším úkolem bude uhodnout, zda na kostce padne liché nebo sudé číslo. Budete hádat v pěti blocích, každém po dvanácti kolech. V tomto úkolu můžete vydělat peníze.
-2) Loterie: budete volit loterii. Můžete vydělat peníze v závislosti na výsledku zvolené loterie.
+2) Loterie: můžete se rozhodnout zúčastnit se loterie s několika koly a získat další peníze v závislosti na vašich rozhodnutích a výsledcích loterie.
 3) Odhady hodnot: budete odhadovat a porovnávat různé hodnoty týkající se všeobecných znalostí a uvádět příklady různých kategorií.
 4) Dotazníky: budete odpovídat na otázky ohledně vašich vlastností a postojů. Dotazník zahrnuje položky, které kontrolují, zda otázkám věnujete pozornost. Pokud odpovíte na tyto kontroly pozornosti správně, získáte další peníze. 
 5) Konec studie a platba: poté, co skončíte, půjdete do vedlejší místnosti, kde podepíšete pokladní dokument, na základě kterého obdržíte vydělané peníze v hotovosti. Jelikož v dokumentu bude uvedena pouze celková suma, nikdo se nedoví, kolik jste vydělali v jednotlivých částech studie.
@@ -26,6 +26,7 @@ V případě, že máte otázky nebo narazíte na technický problém během úk
 Nepokračujte prosím dokud vám výzkumný asistent nedá pokyn.
 """
 
+
 czechending = """
 V úkolu s kostkou jste vydělali {} Kč. V loterii jste vydělali {} Kč. {} jste správně na všechny kontroly pozornosti a tedy {} dalších {} Kč. Vaše odměna za tuto studii je tedy {} Kč, zaokrouhleno na desítky korun nahoru získáváte {} Kč. Napište prosím tuto (zaokrouhlenou) částku společně s číslem vašeho místa – {} na papír na stole před vámi. 
 
@@ -35,8 +36,9 @@ Zvedněte prosím ruku a některý z výzkumných asistentů přijde a ukončí 
 
 Toto je konec experimentu. Děkujeme za vaši účast!
  
-CEBEX/PLESS labs
+Laboratoř CEBEX/PLESS
 """ 
+
 
 
 

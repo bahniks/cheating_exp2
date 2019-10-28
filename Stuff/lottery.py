@@ -16,7 +16,7 @@ from gui import GUI
 lotteryinstructions = """
 V následující úloze “Loterie” můžete vyhrát peníze.
 
-Můžete se rozhodnout, že hodíte kostkou (zobrazení generátoru náhodných čísel).
+Můžete se rozhodnout, zda hodíte virtuální kostkou.
 
 Vaše počáteční výhra je 5 Kč a tato výhra se zdvojnásobí pokaždé, když vám padne sudé číslo.
 Pokud padne liché číslo, úloha končí a výhru v úloze Loterie ztrácíte.
@@ -24,8 +24,6 @@ Maximálně můžete takto vyhrát 1280 Kč.
 
 Kdykoli můžete zmáčknout tlačítko 'Ukončit házení', a tím úlohu Loterie ukončit a odnést si dosaženou výhru.
 """
-
-
 
 instructions = """Můžete se rozhodnout, že hodíte kostkou.
 Vaše počáteční výhra je {} Kč a tato výhra se zdvojnásobí pokaždé, když vám padne sudé číslo.

@@ -21,7 +21,7 @@ CURRENCY = "Kč"
 # TEXTS
 
 debrieftext = """
-Jak bylo uvedeno několikrát dříve, úkol, kde jste odhadovali hody kostkou, měl dvě verze:
+Jak víte, úkol s kostkou měl dvě verze:
 
 Verze “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu  kostkou.
@@ -40,6 +40,7 @@ debriefdimensions = ["... vyžadovala pozornost",
                      "... umožňovala podvádění",
                      "... umožňovala ospravedlnit zveličení uhodnutých hodů",
                      "... sestávala z náhodně generovaných hodů kostkou"]
+
 
 
 
