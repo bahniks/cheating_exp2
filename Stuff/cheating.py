@@ -26,18 +26,18 @@ eventext = "Sudé (2, 4 nebo 6)"
 rolltext = "Hodit kostkou"
 correcttext = "Správně"
 incorrecttext = "Špatně"    
-predictiontext = "Zvolil jsem si, že na kostce padne liché nebo sudé číslo"
+predictiontext = "Zvolil/a jsem si, jestli na kostce padne liché nebo sudé číslo"
 
 treatmenttext = '''Kolo {}
 
 Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo, zapamatujte si svoji volbu a poté klikněte na tlačítko Hodit kostkou.
 '''
 
-treatmenttext2 = "Zvolte, zda jste správně uhodli a vydělali v tomto kole {} Kč nebo zda jste neuhodli a nevydělali jste v tomto kole nic."
+treatmenttext2 = "Zvolte, zda jste hádali správně a vydělali v tomto kole {} Kč nebo zda jste hádali špatně a nevydělali jste v tomto kole nic."
 
 controltext = """Kolo {}
 
-Máte za úkol se uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo a poté klikněte na tlačítko Hodit kostkou.
+Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo, a poté klikněte na tlačítko Hodit kostkou.
 """
 
 controltext2 = "V tomto kole byla vaše předpověď {}"
@@ -57,14 +57,14 @@ Nyní vás čeká {} blok s dvanácti koly. Pro tento blok máte možnost si zvo
 - verze PO.
 """
 
-feetext = """Toto je konec {{}} bloku o dvanácti pokusech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
+feetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte opět možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
+Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
 - verze PO a zaplatím {} Kč
 - verze PŘED a zaplatím 0 Kč.
 """.format(FEE, FEE, FEE)
@@ -77,8 +77,7 @@ treatmentchoicetext = "verze PO"
 intro_block_5 = """
 Nyní vás čeká pátý, poslední blok s dvanácti koly. Úkol má opět dvě verze:
 
-Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
+Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou, a verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
 
 {}
 
@@ -86,6 +85,7 @@ Máte nyní poslední možnost zvolit si jednu z následujících možností:
 - verze PŘED  
 - verze PO.
 """
+
 
 lowmanipulation = "V předchozím podobném experimentu si pouze 30 % účastníků zvolilo verzi “PO”."
 highmanipulation = "V předchozím podobném experimentu si pouze 25 % účastníků zvolilo verzi “PŘED”."
@@ -103,7 +103,7 @@ Odhadněte,
 - kolik % účastníků si zvolilo verzi “PŘED” a kolik hodů z 12 průměrně uhodli
 - kolik % účastníků si zvolilo verzi “PO” a kolik hodů z 12 průměrně uhodli.
 
-Ačkoli se při jednom rozhodnutí platil poplatek za verzi “PO”, nyní se ptáme na situaci, kdy za verzi “PO” žádný poplatek nebyl. 
+Ačkoli se v jednom bloku platil poplatek za verzi “PO”, nyní se ptáme na situaci, kdy za verzi “PO” žádný poplatek nebyl. 
 """
 
 beforeEstimate = "% účastníků zvolilo verzi “PŘED” a uhodli průměrně"
@@ -113,9 +113,9 @@ afterEstimate = "% účastníků zvolilo verzi “PO” a uhodli průměrně"
 intro_block_1 = """
 V následujícím úkolu budete hádat, jestli na virtuální kostce (generátor náhodných čísel) na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 3 a 5. Sudá čísla jsou jsou 2, 4 a 6. 
 
-Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. Bloky se odlišují pravidly, dle nichž budete hádat hody kostkou. Po každém bloku bude krátká přestávka.
+Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. V každém kole budete hádat výsledek jednoho hodu kostkou. Bloky se odlišují pravidly, dle nichž budete hádat hody kostkou. Po každém bloku bude krátká přestávka.
 
-Uhodnete-li hod v bloku, získáte 5 Kč, uhodnete-li další, získáte za něj dalších 10 Kč, uhodnete-li další hod, získáte za něj dalších 15 Kč a tak dále. Za každý další uhodnutý hod získáte navíc částku o 5 Kč vyšší, než byla předchozí odměna. Pokud tedy uhodnete všech 12 hodů, za poslední dvanáctý uhodnutý hod získáte 60 Kč a celkem získáte 390 Kč.
+Uhodnete-li první hod v daném bloku, získáte 5 Kč, uhodnete-li další, získáte za něj dalších 10 Kč, uhodnete-li další hod, získáte za něj dalších 15 Kč a tak dále. Za každý další uhodnutý hod získáte navíc částku o 5 Kč vyšší, než byla předchozí odměna. Pokud tedy uhodnete všech 12 hodů v daném bloku, za poslední dvanáctý uhodnutý hod získáte 60 Kč a celkem získáte 390 Kč.
 
 Poté, co dokončíte všech pět bloků, bude jeden blok náhodně vylosován. Obdržíte pouze peníze, které jste vydělali v tomto vylosovaném bloku. Pokud správně uhodnete všech dvanáct hodů v daném bloku, a tento blok bude později vylosován, obdržíte 390 Kč. Vaše výsledky v ostatních blocích nijak neovlivní množství peněz, které obdržíte.
 
@@ -128,14 +128,14 @@ correct_answer = "15 Kč je správná odpověď. Byl vylosován třetí blok, ve
 
 second_check_question = "Dříve než začnete, zkuste odhadnout, kolik hodů správně uhodnete ve vylosovaném bloku."
 prediction_label = "správných předpovědí"
-wrong_trials = "V jednom kole je pouze 12 hodů!"
+wrong_trials = "V jednom bloku je pouze 12 hodů!"
 
 
 intro_block_2 = """
-Toto je konec prvního bloku s dvanácti koly. Pokud bude tento blok vylosován, obdržíte {} Kč. Nyní začne druhý blok s dvanácti hody.
+Toto je konec prvního bloku. Pokud bude tento blok vylosován, obdržíte {} Kč. Nyní začne druhý blok s dvanácti koly.
 """
 
-endtext = """Toto je konec posledního bloku s dvanácti koly. Pokud bude tento blok vybrán, obdržíte {} Kč.
+endtext = """Toto je konec posledního bloku. Pokud bude tento blok vybrán, obdržíte {} Kč.
 
 Toto je konec úkolu s kostkou.
 """
@@ -146,8 +146,9 @@ fourth = ("třetího", "čtvrtý")
 winningInformation = """
 V úloze s házením kostek byl náhodně vybrán blok {}.
 
-Vyhráli jste proto {} Kč.
+Získávate proto {} Kč.
 """
+
 
 
 
@@ -160,7 +161,7 @@ class Cheating(ExperimentFrame):
 
         #######################
         # adjustable parameters
-        self.trials = 12 # change for testing
+        self.trials = 1#2 # change for testing
         self.pause_after_roll = 0.5
         self.pause_before_trial = 0.2
         self.displayNum = self.createDots # self.createDots or self.createText
@@ -282,8 +283,6 @@ class Cheating(ExperimentFrame):
 
     def checked(self):
         self.rollButton["state"] = "!disabled"
-        self.oddButton["state"] = "disabled"
-        self.evenButton["state"] = "disabled"
 
 
     def checkbuttoned(self):
@@ -323,6 +322,8 @@ class Cheating(ExperimentFrame):
             self.response = "NA"    
         else:
             self.response = self.predictionVar.get()
+            self.oddButton["state"] = "disabled"
+            self.evenButton["state"] = "disabled"
         self.rollButton["state"] = "disabled"
         self.die.create_rectangle((5, 5, self.diesize - 5, self.diesize - 5),
                                   fill = "white", tag = "die", outline = "black", width = 5)
