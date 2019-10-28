@@ -16,7 +16,7 @@ from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructi
 from cheating import Instructions4, BlockFour, Estimate, Instructions5, BlockFive, EndCheating, winning
 from debriefcheating import DebriefCheating
 from debriefing import Debriefing
-from lottery import Lottery
+from lottery import Lottery, LotteryInstructions
 from anchoring import AnchoringInstructions1, Comparison1, AnchoringInstructions2, Comparison2
 
 
@@ -33,6 +33,7 @@ frames = [Intro,
           Instructions5,
           BlockFive,
           EndCheating,
+          LotteryInstructions,
           Lottery,
           winning,
           AnchoringInstructions1,
