@@ -194,7 +194,7 @@ class Comparison(ExperimentFrame):
 
 
 
-AnchoringInstructions1 = (InstructionsFrame, {"text": intro1, "height": 5, "font": 20})
+AnchoringInstructions1 = (InstructionsFrame, {"text": intro1, "height": 5, "font": 20, "width": 60})
 AnchoringInstructions2 = (InstructionsFrame, {"text": intro2, "height": 3, "font": 20, "width": 60})
 Comparison1 = (Comparison, {"state": "first"})
 Comparison2 = (Comparison, {"state": "second"})
