@@ -1,3 +1,3 @@
 BONUS = 20
 
-TESTING = False
+TESTING = True

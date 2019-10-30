@@ -120,7 +120,9 @@ class Comparison(ExperimentFrame):
 
 
     def displayEntry(self):
-        self.answer = ttk.Entry(self, textvariable = self.answerVar, font = "helvetica 20", width = 20)
+        vcmd = (self.register(self.checkEntryLength), "%P")
+        self.answer = ttk.Entry(self, textvariable = self.answerVar, font = "helvetica 20", width = 25,
+                                validatecommand = vcmd, validate = "key")
         self.answer.grid(row = 4, column = 1, columnspan = 2, pady = 10)
         self.answer.bind("<KeyRelease>", self.checkEntry)
         self.nextButton.grid(row = 5, column = 1, columnspan = 2)
@@ -134,8 +136,15 @@ class Comparison(ExperimentFrame):
         self.text["state"] = "disabled"
 
 
+    def checkEntryLength(self, text):
+        if len(text) > 25:
+            return False
+        else:
+            return True
+
+
     def checkEntry(self, e):           
-        if self.answerVar.get():
+        if len(self.answerVar.get()) > 2:
             self.nextButton["state"] = "!disabled"
         else:
             self.nextButton["state"] = "disabled"
@@ -202,7 +211,7 @@ Comparison2 = (Comparison, {"state": "second"})
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([AnchoringInstructions1,
+    GUI([#AnchoringInstructions1,
          Comparison1,
          AnchoringInstructions2,
          Comparison2
