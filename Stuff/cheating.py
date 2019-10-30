@@ -238,6 +238,10 @@ class Cheating(ExperimentFrame):
         else:
             fee = FEE if conditions[self.blockNumber - 1] == "fee_treatment" else 0
             self.root.texts["win" + str(self.blockNumber)] = sum(self.rewards[:self.root.wins[self.blockNumber]]) - fee
+            if self.blockNumber == 5:
+                win = random.randint(1, 5)
+                self.root.texts["dice"] = self.root.texts["win{}".format(win)]
+                self.root.texts["block"] = win
             self.nextFun()
 
 
@@ -649,19 +653,6 @@ BlockFive = (Cheating, {"block": 5})
 EndCheating = (InstructionsFrame, {"text": endtext, "height": 5, "update": ["win5"]})
 
 
-class Winning(InstructionsFrame):
-    def __init__(self):
-        pass
-
-    def __call__(self, root):
-        win = random.randint(1, 5)
-        root.texts["dice"] = root.texts["win{}".format(win)]
-        text = winningInformation.format(win, root.texts["dice"])        
-        super().__init__(root, text, height = 5)
-        return self
-
-winning = Winning()
-
 
 
 if __name__ == "__main__":
@@ -678,6 +669,5 @@ if __name__ == "__main__":
          Instructions5,
          BlockFive,
          EndCheating,
-         winning,
          DebriefCheating
          ])

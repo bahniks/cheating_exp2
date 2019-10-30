@@ -117,6 +117,8 @@ class Comparison(ExperimentFrame):
 
         self.lower.grid(row = 5, column = 1, sticky = E, padx = 20)
         self.higher.grid(row = 5, column = 2, sticky = W, padx = 20)
+        self.lower["state"] = "!disabled"
+        self.higher["state"] = "!disabled"
 
 
     def displayEntry(self):
@@ -144,7 +146,7 @@ class Comparison(ExperimentFrame):
 
 
     def checkEntry(self, e):           
-        if len(self.answerVar.get()) > 2:
+        if len(self.answerVar.get()) > 2 or (self.answerVar.get() and self.state == "second"):
             self.nextButton["state"] = "!disabled"
         else:
             self.nextButton["state"] = "disabled"
@@ -156,6 +158,8 @@ class Comparison(ExperimentFrame):
         self.text["state"] = "disabled"
         self.lower.grid_forget()
         self.higher.grid_forget()
+        self.lower["state"] = "disabled"
+        self.higher["state"] = "disabled"
         self.comparisonAnswer = answer
         if self.state == "first":
             self.displayEntry()
@@ -176,7 +180,9 @@ class Comparison(ExperimentFrame):
         self.text.delete("1.0", "end")
         self.text["state"] = "disabled"
         self.answer.grid_forget()
+        self.answer["state"] = "disabled"
         self.nextButton.grid_forget()
+        self.nextButton["state"] = "disabled"
         if self.state == "first":
             self.finishRound()
         else:
@@ -185,12 +191,12 @@ class Comparison(ExperimentFrame):
 
     def finishRound(self):
         if self.state == "first":
-            self.root.texts[items[self.number][0]] = self.answerVar.get().replace("/t", " ").replace("\n", "\t")
+            self.root.texts[items[self.number][0]] = self.answerVar.get().strip().replace("/t", " ").replace("\n", "\t")
             self.file.write("\t".join([self.id, str(self.number + 1), items[self.number][0], self.valence,
-                                       self.comparisonAnswer, self.answerVar.get().replace("/t", " ").replace("\n", "\t")]) + "\n")
+                                       self.comparisonAnswer, self.answerVar.get().strip().replace("/t", " ").replace("\n", "\t")]) + "\n")
         else:
             self.file.write("\t".join([self.id, str(self.number + 1), items[self.number][0],
-                                       self.comparisonAnswer, self.answerVar.get()]) + "\n")
+                                       self.comparisonAnswer, self.answerVar.get().strip()]) + "\n")
         self.answerVar.set("")
         self.number += 1
 
@@ -211,7 +217,7 @@ Comparison2 = (Comparison, {"state": "second"})
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.getcwd()))
-    GUI([#AnchoringInstructions1,
+    GUI([AnchoringInstructions1,
          Comparison1,
          AnchoringInstructions2,
          Comparison2

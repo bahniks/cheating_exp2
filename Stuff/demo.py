@@ -131,14 +131,11 @@ class Demographics(ExperimentFrame):
             lottery = self.root.texts["lottery_win"]
             bonus = 0 if self.root.texts["attention_checks"] else BONUS
             with open(output, mode = "w", encoding = "utf-8") as infile:
-                reward = dice + lottery + bonus
+                reward = dice + lottery + bonus + 150
                 self.root.texts["reward"] = reward
                 reward = int(ceil(reward/10)*10)
                 self.root.texts["rounded_reward"] = reward
                 infile.write("reward: " + str(reward) + "Kč\n\n")
-                #infile.write("dice: " + str(dice) + "Kč\n")
-                #infile.write("lottery: " + str(lottery) + "Kč\n")
-                #infile.write("bonus: " + str(bonus) + "Kč")
             self.file.write("Winnings\n")
             self.file.write(self.id + "\t" + str(reward) + "\n")
 

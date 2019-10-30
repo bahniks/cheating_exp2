@@ -128,7 +128,7 @@ DarkTriad1 = (Questionnaire,
               "labelwidth": 12,
               "text": False,
               "fontsize": 13,
-              "blocksize": 5,
+              "blocksize": 3,
               "filetext": "Dark Triad"})
 DarkTriad2 = (Questionnaire,
              {"words": "darktriad2.txt",
@@ -142,7 +142,7 @@ DarkTriad2 = (Questionnaire,
               "labelwidth": 12,
               "text": False,
               "fontsize": 13,
-              "blocksize": 5,
+              "blocksize": 3,
               "filetext": "Dark Triad"})
 
 

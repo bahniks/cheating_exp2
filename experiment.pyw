@@ -13,7 +13,7 @@ from questionnaire import DarkTriad1, DarkTriad2
 from intros import Intro, Ending
 from demo import Demographics
 from cheating import Instructions1, BlockOne, Instructions2, BlockTwo, Instructions3, BlockThree
-from cheating import Instructions4, BlockFour, Estimate, Instructions5, BlockFive, EndCheating, winning
+from cheating import Instructions4, BlockFour, Estimate, Instructions5, BlockFive, EndCheating
 from debriefcheating import DebriefCheating
 from debriefing import Debriefing
 from lottery import Lottery, LotteryInstructions
@@ -35,7 +35,6 @@ frames = [Intro,
           EndCheating,
           LotteryInstructions,
           Lottery,
-          winning,
           AnchoringInstructions1,
           Comparison1,
           AnchoringInstructions2,
@@ -49,5 +48,6 @@ frames = [Intro,
           Debriefing,
           Ending
          ]
+
 
 GUI(frames)

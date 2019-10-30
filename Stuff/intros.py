@@ -28,7 +28,7 @@ Nepokračujte prosím dokud vám výzkumný asistent nedá pokyn.
 
 
 czechending = """
-V úkolu s kostkou jste vydělali {} Kč. V loterii jste vydělali {} Kč. {} jste správně na všechny kontroly pozornosti a tedy {} dalších {} Kč. Vaše odměna za tuto studii je tedy {} Kč, zaokrouhleno na desítky korun nahoru získáváte {} Kč. Napište prosím tuto (zaokrouhlenou) částku společně s číslem vašeho místa – {} na papír na stole před vámi. 
+V úloze s házením kostek byl náhodně vybrán blok {}. V úkolu s kostkou jste tedy vydělali {} Kč. V loterii jste vydělali {} Kč. {} jste správně na všechny kontroly pozornosti a tedy {} dalších {} Kč. Za účast na studii dostáváte 150 Kč. Vaše odměna za tuto studii je tedy dohromady {} Kč, zaokrouhleno na desítky korun nahoru získáváte {} Kč. Napište prosím tuto (zaokrouhlenou) částku společně s číslem vašeho místa – {} na papír na stole před vámi.
 
 Výsledky experimentu budou volně dostupné na stránkách PLESS a CEBEX, krátce po vyhodnocení dat a publikaci výsledků. Žádáme vás, abyste nesdělovali detaily této studie možným účastníkům, aby jejich volby a odpovědi nebyly ovlivněny a znehodnoceny.
   
@@ -49,7 +49,7 @@ Laboratoř CEBEX/PLESS
 ################################################################################
 
 
-updates = ["dice", "lottery_win", "attention1", "attention2", "bonus", "reward", "rounded_reward", "station"]
+updates = ["block", "dice", "lottery_win", "attention1", "attention2", "bonus", "reward", "rounded_reward", "station"]
 
 
 
