@@ -38,7 +38,7 @@ class ExperimentFrame(Canvas):
 
 class InstructionsFrame(ExperimentFrame):
     def __init__(self, root, text, proceed = True, firstLine = None, end = False, height = 12,
-                 font = 18, space = False, width = 90, keys = None, update = None):
+                 font = 18, space = False, width = 90, keys = None, update = None, bold = None):
         super().__init__(root)
 
         if update:
@@ -60,6 +60,19 @@ class InstructionsFrame(ExperimentFrame):
             self.text.tag_configure(firstLine, font = "helvetica 20 {}".format(firstLine))
         else:
             self.text.insert("1.0", text)
+
+        self.text.tag_configure("bold", font = "helvetica {} bold".format(font))
+        i_index = "1.0"
+        while True:
+            i_index = self.text.search("<b>", i_index)
+            if not i_index:
+                break
+            e_index = self.text.search("</b>", i_index)
+            self.text.tag_add("bold", i_index, e_index)
+            self.text.delete(e_index, e_index + "+4c")
+            self.text.delete(i_index, i_index + "+3c")
+            i_index = e_index
+            
         self.text.config(state = "disabled")
 
         if proceed:

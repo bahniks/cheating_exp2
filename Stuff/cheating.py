@@ -49,8 +49,8 @@ freetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
-Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+<b>Verzi “PŘED”</b>, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+<b>Verzi “PO”</b>, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
 Nyní vás čeká {{}} blok s dvanácti koly. Pro tento blok máte možnost si zvolit jednu z následujících možností:
 - verze PŘED  
@@ -59,7 +59,6 @@ Nyní vás čeká {{}} blok s dvanácti koly. Pro tento blok máte možnost si z
 {}
 """
 
-
 fourthfree = "Všimněte si, že v tomto bloku není s verzí PO spojen žádný poplatek."
 thirdfree = ""
 
@@ -67,10 +66,10 @@ feetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok 
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
-Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+<b>Verzi “PŘED”</b>, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+<b>Verzi “PO”</b>, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. Volba verze “PO” je ale zpoplatněna {} Kč. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
+Nyní vás čeká {{}} blok s dvanácti pokusy. Pro tento blok máte možnost zvolit si jednu z uvedených verzí. <b>Volba verze “PO” je ale zpoplatněna {} Kč</b>. Zvolíte-li tuto verzi, bude částka {} Kč odečtena od výdělku v tomto bloku. Můžete si tedy zvolit jednu z následujících možností:
 - verze PO a zaplatím {} Kč
 - verze PŘED a zaplatím 0 Kč.
 """.format(FEE, FEE, FEE)
@@ -83,7 +82,7 @@ treatmentchoicetext = "verze PO"
 intro_block_5 = """
 Nyní vás čeká pátý, poslední blok s dvanácti koly. Úkol má opět dvě verze:
 
-Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou, a verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
+<b>Verzi “PŘED”</b>, ve které činíte předpovědi před hodem kostkou, a <b>verzi “PO”</b>, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou. Všimněte si, že za verzi “PO” v tomto bloku neplatíte žádný poplatek.
 
 {}
 
@@ -92,8 +91,8 @@ Máte nyní poslední možnost zvolit si jednu z následujících možností:
 - verze PO.
 """
 
-lowmanipulation = "V předchozím podobném experimentu si pouze 30 % účastníků zvolilo verzi “PO”."
-highmanipulation = "V předchozím podobném experimentu si pouze 25 % účastníků zvolilo verzi “PŘED”."
+lowmanipulation = "<b>V předchozím podobném experimentu si pouze 30 % účastníků zvolilo verzi “PO”.</b>"
+highmanipulation = "<b>V předchozím podobném experimentu si pouze 25 % účastníků zvolilo verzi “PŘED”.</b>"
 
 
 estimatext = """
@@ -101,8 +100,8 @@ Toto je konec čtvrtého bloku o dvanácti kolech. Pokud bude tento blok vylosov
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
-Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
-Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
+<b>Verzi “PŘED”</b>, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
+<b>Verzi “PO”</b>, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
 Odhadněte, 
 - kolik % účastníků si zvolilo verzi “PŘED” a kolik hodů z 12 průměrně uhodli
@@ -161,7 +160,7 @@ class Cheating(ExperimentFrame):
 
         #######################
         # adjustable parameters
-        self.trials = 12 # change for testing
+        self.trials = 1#2 # change for testing
         self.pause_after_roll = 0.5
         self.pause_before_trial = 0.2
         self.displayNum = self.createDots # self.createDots or self.createText
@@ -447,6 +446,17 @@ class Estimate(ExperimentFrame):
         self.text = Text(self, height = 17, font = "helvetica 18", wrap = "word", width = 80,
                          relief = "flat")
         self.text.insert("1.0", estimatext.format(self.root.texts["win4"]))
+        self.text.tag_configure("bold", font = "helvetica 18 bold")
+        i_index = "1.0"
+        while True:
+            i_index = self.text.search("<b>", i_index)
+            if not i_index:
+                break
+            e_index = self.text.search("</b>", i_index)
+            self.text.tag_add("bold", i_index, e_index)
+            self.text.delete(e_index, e_index + "+4c")
+            self.text.delete(i_index, i_index + "+3c")
+            i_index = e_index
         self.text["state"] = "disabled"
         self.text.grid(column = 1, columnspan = 5, row = 1)
 
