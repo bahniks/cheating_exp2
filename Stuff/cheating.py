@@ -60,7 +60,7 @@ Nyní vás čeká {{}} blok s dvanácti koly. Pro tento blok máte možnost si z
 """
 
 
-fourthfree = "Všimněte si, že v tomto bloku není s vezí PO spojen žádný poplatek."
+fourthfree = "Všimněte si, že v tomto bloku není s verzí PO spojen žádný poplatek."
 thirdfree = ""
 
 feetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
