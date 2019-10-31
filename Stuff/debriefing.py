@@ -18,13 +18,14 @@ from gui import GUI
 # TEXTS #
 #########
 
-q1 = "V této a následující části máme zájem zjistit vaše názory na tento experiment. Prosím, napište svůj názor v několika bodech či větách."
-q2 = "Máte nějaké připomínky k průběhu experimentu? Byly pokyny jasné? Bylo snadné sledovat uživatelské rozhraní? Máte nějaké připomínky týkající se chování experimentátorů? Existuje něco, co byste udělali jinak?"
-q3 = "Jaký byl podle vašeho názoru cíl úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché nebo sudé číslo? Uveďte prosím, proč jste se v této úloze zachovali tak, jak jste se zachovali."
-q4 = "Myslíte si, že jste správně odhadli, co je v experimentu zkoumáno? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
-q5 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
-q6 = "Nakolik důvěřujete tomu, že všechny vám sdělené informace byly pravdivé?"
-q6values = ["zcela důvěřuji", "spíše důvěřuji", "nejsem si jist", "spíše nedůvěřuji", "zcela nedůvěřuji"]
+intro = "V této a následující části máme zájem zjistit vaše názory na tento experiment. Prosím, napište svůj názor v několika bodech či větách."
+q1 = "Máte nějaké připomínky k průběhu experimentu? (Například: nejasné pokyny, nepřehledné uživatelské rozhraní, problematické chování experimentátorů nebo jiných účastníků, cokoliv, co byste udělali jinak apod.)"
+q2 = "Jaký byl podle vašeho názoru výzkumný záměr v úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché, nebo sudé číslo?"
+q3 = "Myslíte si, že jste správně odhadli, jaký je výzkumný záměr experimentátorů v  úkolu s kostkou? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
+q4 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
+q5 = "Myslíte si, že byly všechny informace, jež jste během experimentu dostali, pravdivé?"
+q5values = ["ano", "nejsem si jist/a", "ne"]
+
 
 ##################################################################################################################
 
@@ -36,22 +37,27 @@ class Debriefing(ExperimentFrame):
 
         self.file.write("Debriefing\n")
 
-        self.question1 = Question(self, q1, alines = 3)
-        self.question2 = Question(self, q2, alines = 3, qlines = 3)
+        self.text = Text(self, font = "helvetica 18", relief = "flat",
+                         background = "white", width = 80, height = 3, wrap = "word",
+                         highlightbackground = "white")
+        self.text.grid(row = 0, column = 1, sticky = S)
+        self.text.insert("1.0", intro)
+        self.text["state"] = "disabled"
+
+        self.question1 = Question(self, q1, alines = 3, qlines = 3)
+        self.question2 = Question(self, q2, alines = 3)
         self.question3 = Question(self, q3, alines = 3)
         self.question4 = Question(self, q4, alines = 3)
-        self.question5 = Question(self, q5, alines = 3)
-        self.question6 = Measure(self, q6, values = q6values, questionPosition = "above",
-                                 left = "", right = "", labelPosition = "next")
-        self.question6.question.grid(column = 0, row = 0, columnspan = 4, pady = 6)
-        self.question6.question["font"] = "helvetica 15"
+        self.question5 = Measure(self, q5, values = q5values, questionPosition = "above",
+                                 left = "", right = "", labelPosition = "next", filler = 550)
+        self.question5.question.grid(column = 0, row = 0, columnspan = 2, pady = 6)
+        self.question5.question["font"] = "helvetica 15"
 
         self.question1.grid(row = 1, column = 1)
         self.question2.grid(row = 2, column = 1)
         self.question3.grid(row = 3, column = 1)
         self.question4.grid(row = 4, column = 1)
         self.question5.grid(row = 5, column = 1)
-        self.question6.grid(row = 6, column = 1)
         
         ttk.Style().configure("TButton", font = "helvetica 15")
         self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun)
@@ -63,7 +69,7 @@ class Debriefing(ExperimentFrame):
 
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(2, weight = 1)
-        self.rowconfigure(0, weight = 3)
+        self.rowconfigure(0, weight = 2)
         self.rowconfigure(1, weight = 1)
         self.rowconfigure(2, weight = 1)
         self.rowconfigure(3, weight = 1)
@@ -72,13 +78,13 @@ class Debriefing(ExperimentFrame):
         self.rowconfigure(6, weight = 1)
         self.rowconfigure(7, weight = 1)
         self.rowconfigure(8, weight = 1)
-        self.rowconfigure(9, weight = 1)
+        self.rowconfigure(9, weight = 2)
 
         
     def check(self):
         return self.question1.check() and self.question2.check() and \
                self.question3.check() and self.question4.check() and \
-               self.question5.check() and self.question6.answer.get()
+               self.question5.answer.get()
 
     def back(self):
         self.warning.config(foreground = "red")
@@ -93,9 +99,7 @@ class Debriefing(ExperimentFrame):
         self.file.write("\t")
         self.question4.write(newline = False)
         self.file.write("\t")
-        self.question5.write(newline = False)
-        self.file.write("\t")
-        self.question6.write()
+        self.question5.write()
         self.file.write("\n")
 
        

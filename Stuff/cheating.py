@@ -26,18 +26,18 @@ eventext = "Sudé (2, 4 nebo 6)"
 rolltext = "Hodit kostkou"
 correcttext = "Správně"
 incorrecttext = "Špatně"    
-predictiontext = "Zvolil/a jsem si, jestli na kostce padne liché nebo sudé číslo"
+predictiontext = "Zvolil/a jsem si, jestli na kostce padne liché, nebo sudé číslo"
 
 treatmenttext = '''Kolo {}
 
-Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo, zapamatujte si svoji volbu a poté klikněte na tlačítko Hodit kostkou.
+Máte za úkol uhodnout, zda na kostce padne liché, nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché, nebo sudé číslo, zapamatujte si svoji volbu a poté klikněte na tlačítko Hodit kostkou.
 '''
 
-treatmenttext2 = "Zvolte, zda jste hádali správně a vydělali v tomto kole {} Kč nebo zda jste hádali špatně a nevydělali jste v tomto kole nic."
+treatmenttext2 = "Zvolte, zda jste hádali správně a vydělali v tomto kole {} Kč, nebo zda jste hádali špatně a nevydělali jste v tomto kole nic."
 
 controltext = """Kolo {}
 
-Máte za úkol uhodnout, zda na kostce padne liché nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché nebo sudé číslo, a poté klikněte na tlačítko Hodit kostkou.
+Máte za úkol uhodnout, zda na kostce padne liché, nebo sudé číslo. Nyní prosím zvolte, zda v následujícím hodě padne liché, nebo sudé číslo, a poté klikněte na tlačítko Hodit kostkou.
 """
 
 controltext2 = "V tomto kole byla vaše předpověď {}"
@@ -45,17 +45,23 @@ wintext = "správná a vydělali jste {} Kč."
 losstext = "špatná a nevydělali jste možných {} Kč."
 
 
-freetext = """Toto je konec {} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {} Kč.
+freetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
 Jak jste zaznamenali, úkol měl dvě verze:
 
 Verzi “PŘED”, ve které činíte předpovědi před hodem kostkou. Po zvolení možnosti vidíte výsledek hodu a dozvíte se, zda jste uhodli či nikoliv, a kolik jste vydělali.
 Verzi “PO”, ve které uvádíte, zda jste uhodli či nikoliv a kolik jste vydělali, až poté, co vidíte výsledek hodu kostkou.
 
-Nyní vás čeká {} blok s dvanácti koly. Pro tento blok máte možnost si zvolit jednu z následujících možností:
+Nyní vás čeká {{}} blok s dvanácti koly. Pro tento blok máte možnost si zvolit jednu z následujících možností:
 - verze PŘED  
 - verze PO.
+
+{}
 """
+
+
+fourthfree = "Všimněte si, že v tomto bloku není s vezí PO spojen žádný poplatek."
+thirdfree = ""
 
 feetext = """Toto je konec {{}} bloku o dvanácti kolech. Pokud bude tento blok vylosován, obdržíte {{}} Kč.
 
@@ -86,7 +92,6 @@ Máte nyní poslední možnost zvolit si jednu z následujících možností:
 - verze PO.
 """
 
-
 lowmanipulation = "V předchozím podobném experimentu si pouze 30 % účastníků zvolilo verzi “PO”."
 highmanipulation = "V předchozím podobném experimentu si pouze 25 % účastníků zvolilo verzi “PŘED”."
 
@@ -111,7 +116,7 @@ afterEstimate = "% účastníků zvolilo verzi “PO” a uhodli průměrně"
 
 
 intro_block_1 = """
-V následujícím úkolu budete hádat, jestli na virtuální kostce (generátor náhodných čísel) na vašem počítači padne liché nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 3 a 5. Sudá čísla jsou jsou 2, 4 a 6. 
+V následujícím úkolu budete hádat, jestli na virtuální kostce (generátor náhodných čísel) na vašem počítači padne liché, nebo sudé číslo. Každé z čísel 1, 2, 3, 4, 5 a 6 může padnout se stejnou pravděpodobností. Lichá čísla jsou 1, 3 a 5. Sudá čísla jsou 2, 4 a 6. 
 
 Úkol je rozdělen do pěti samostatných bloků a každý blok sestává z dvanácti kol. V každém kole budete hádat výsledek jednoho hodu kostkou. Bloky se odlišují pravidly, dle nichž budete hádat hody kostkou. Po každém bloku bude krátká přestávka.
 
@@ -143,11 +148,6 @@ Toto je konec úkolu s kostkou.
 third = ("druhého", "třetí")
 fourth = ("třetího", "čtvrtý")
 
-winningInformation = """
-V úloze s házením kostek byl náhodně vybrán blok {}.
-
-Získávate proto {} Kč.
-"""
 
 
 
@@ -405,7 +405,10 @@ class Selection(InstructionsFrame):
             if conditions[roundNum - 1] == "fee":
                 text = feetext
             else:
-                text = freetext
+                if roundNum == 3:
+                    text = freetext.format(thirdfree)
+                if roundNum == 4:
+                    text = freetext.format(fourthfree)
             if roundNum == 3:
                 text = text.format(third[0], "{}", third[1])
             elif roundNum == 4:
