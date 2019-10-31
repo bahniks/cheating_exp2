@@ -18,6 +18,7 @@ from debriefcheating import DebriefCheating
 from debriefing import Debriefing
 from lottery import Lottery, LotteryInstructions
 from anchoring import AnchoringInstructions1, Comparison1, AnchoringInstructions2, Comparison2
+from character import CharacterIntro, Character1, CharacterIntro2, Character2
 
 
 frames = [Intro,
@@ -39,6 +40,10 @@ frames = [Intro,
           Comparison1,
           AnchoringInstructions2,
           Comparison2,
+          CharacterIntro,
+          Character1,
+          CharacterIntro2,
+          Character2,
           QuestInstructions,
           Hexaco,
           DarkTriad1,
