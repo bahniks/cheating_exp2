@@ -38,6 +38,7 @@ debriefscale4 = "zcela souhlasím"
 debriefdimensions = ["... vyžadovala pozornost",
                      "... vyžadovala logické myšlení",
                      "... umožňovala podvádění",
+                     "... byla zábavnější než druhá verze úkolu",
                      "... umožňovala ospravedlnit zveličení uhodnutých hodů",
                      "... sestávala z náhodně generovaných hodů kostkou"]
 

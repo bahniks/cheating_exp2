@@ -21,7 +21,7 @@ from gui import GUI
 intro = "V této a následující části máme zájem zjistit vaše názory na tento experiment. Prosím, napište svůj názor v několika bodech či větách."
 q1 = "Máte nějaké připomínky k průběhu experimentu? (Například: nejasné pokyny, nepřehledné uživatelské rozhraní, problematické chování experimentátorů nebo jiných účastníků, cokoliv, co byste udělali jinak apod.)"
 q2 = "Jaký byl podle vašeho názoru výzkumný záměr v úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché, nebo sudé číslo?"
-q3 = "Myslíte si, že jste správně odhadli, jaký je výzkumný záměr experimentátorů v  úkolu s kostkou? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
+q3 = "Myslíte si, že jste správně odhadli, jaký je výzkumný záměr experimentátorů v  úkolu s hádáním strany u kostky? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
 q4 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
 q5 = "Myslíte si, že byly všechny informace, jež jste během experimentu dostali, pravdivé?"
 q5values = ["ano", "nejsem si jist/a", "ne"]
@@ -46,7 +46,7 @@ class Debriefing(ExperimentFrame):
 
         self.question1 = Question(self, q1, alines = 3, qlines = 3)
         self.question2 = Question(self, q2, alines = 3)
-        self.question3 = Question(self, q3, alines = 3)
+        self.question3 = Question(self, q3, alines = 3, qlines = 3)
         self.question4 = Question(self, q4, alines = 3)
         self.question5 = Measure(self, q5, values = q5values, questionPosition = "above",
                                  left = "", right = "", labelPosition = "next", filler = 550)
