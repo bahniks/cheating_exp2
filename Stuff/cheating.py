@@ -516,12 +516,17 @@ class Estimate(ExperimentFrame):
             float(self.beforeRollsVar.get())
             float(self.afterRollsVar.get())
             if abs(float(self.beforePercVar.get()) + float(self.afterPercVar.get()) - 100) > 0.1:
-                self.warning["text"] = "Součet pravděpodobností se musí rovnat 100%\n"
+                self.warning["text"] = "Součet pravděpodobností se musí rovnat 100 %!\n"
                 self.warning["foreground"] = "red"
                 return False
             elif float(self.beforeRollsVar.get()) > 12 or float(self.afterRollsVar.get()) > 12:
-                self.warning["text"] = "V jednom bloku je pouze 12 kol\n"
+                self.warning["text"] = "V jednom bloku je pouze 12 kol!\n"
                 self.warning["foreground"] = "red"                
+                return False
+            elif float(self.beforeRollsVar.get()) < 0 or float(self.afterRollsVar.get()) < 0 or float(self.afterPercVar.get()) < 0 or float(self.beforePercVar.get()) < 0:
+                self.warning["text"] = "Všechny hodnoty musí být kladné!\n"
+                self.warning["foreground"] = "red"       
+                return False
             else: 
                 return True            
         except Exception:

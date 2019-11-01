@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from time import localtime, strftime
+from time import localtime, strftime, time
 from collections import defaultdict
 
 from constants import TESTING
@@ -49,6 +49,7 @@ class GUI(Tk):
         
 
     def nextFrame(self):
+        self.file.write("time: " + str(time()) + "\n")
         self.count += 1
         if self.count >= len(self.order):
             self.destroy()

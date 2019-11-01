@@ -62,7 +62,7 @@ class Comparison(ExperimentFrame):
         ttk.Style().configure("TButton", font = "helvetica 18")
 
         if state == "second":
-            self.warning = ttk.Label(self, text = "Odpověď musí být číslo!\n(pro desetinná místa použijte tečku)", font = "helvetica 20",
+            self.warning = ttk.Label(self, text = "Odpověď musí být kladné číslo!\n(pro desetinná místa použijte tečku)", font = "helvetica 20",
                                      background = "white", foreground = "white", justify = "center", state = "disabled")
             self.warning.grid(row = 6, column = 1, columnspan = 2)
         
@@ -146,7 +146,7 @@ class Comparison(ExperimentFrame):
 
 
     def checkEntry(self, e):           
-        if len(self.answerVar.get()) > 2 or (self.answerVar.get() and self.state == "second"):
+        if len(self.answerVar.get().strip()) > 2 or (self.answerVar.get().strip() and self.state == "second"):
             self.nextButton["state"] = "!disabled"
         else:
             self.nextButton["state"] = "disabled"
@@ -170,8 +170,11 @@ class Comparison(ExperimentFrame):
     def proceed(self):
         if self.state == "second":
             try:
-                float(self.answerVar.get())
-                self.warning["foreground"] = "white"
+                if float(self.answerVar.get().strip()) > 0:
+                    self.warning["foreground"] = "white"
+                else:
+                    self.warning["foreground"] = "red"
+                    return
             except:
                 self.warning["foreground"] = "red"
                 return

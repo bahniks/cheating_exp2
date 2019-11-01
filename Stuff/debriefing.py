@@ -21,10 +21,13 @@ from gui import GUI
 intro = "V této a následující části máme zájem zjistit vaše názory na tento experiment. Prosím, napište svůj názor v několika bodech či větách."
 q1 = "Máte nějaké připomínky k průběhu experimentu? (Například: nejasné pokyny, nepřehledné uživatelské rozhraní, problematické chování experimentátorů nebo jiných účastníků, cokoliv, co byste udělali jinak apod.)"
 q2 = "Jaký byl podle vašeho názoru výzkumný záměr v úkolu, ve kterém jste museli předpovídat, zda na kostce padne liché, nebo sudé číslo?"
-q3 = "Myslíte si, že jste správně odhadli, jaký je výzkumný záměr experimentátorů v  úkolu s hádáním strany u kostky? Pakliže ano, snažili jste se vyjít vstříc záměru experimentátorů nebo jste se naopak chovali opačně?"
+q3 = "Myslíte si, že jste správně odhadli, jaký je výzkumný záměr experimentátorů v  úkolu s hádáním strany u kostky?"
+q3b = "Snažili jste se vyjít vstříc výzkumnému záměru experimentátorů v úkolu s hádáním hodu u kostky nebo jste se naopak chovali opačně?"
+q3bvalues = ["nezvažoval(a) jsem záměr experimentátorů", "chtěl(a) jsem vyjít vstříc experimentátorům", "nechtěl(a) jsem vyjít vstříc experimentátorům"]
 q4 = 'Myslíte si, že by bylo nemorální ve verzi "PO" uvádět větší počet správně uhodnutých hodů, abyste vydělali více peněz? Uveďte prosím také důvod své odpovědi.'
 q5 = "Myslíte si, že byly všechny informace, jež jste během experimentu dostali, pravdivé?"
 q5values = ["ano", "nejsem si jist/a", "ne"]
+
 
 
 ##################################################################################################################
@@ -37,17 +40,20 @@ class Debriefing(ExperimentFrame):
 
         self.file.write("Debriefing\n")
 
-        self.text = Text(self, font = "helvetica 18", relief = "flat",
+        self.text = Text(self, font = "helvetica 15", relief = "flat",
                          background = "white", width = 80, height = 3, wrap = "word",
                          highlightbackground = "white")
         self.text.grid(row = 0, column = 1, sticky = S)
         self.text.insert("1.0", intro)
         self.text["state"] = "disabled"
 
-        self.question1 = Question(self, q1, alines = 3, qlines = 3)
-        self.question2 = Question(self, q2, alines = 3)
-        self.question3 = Question(self, q3, alines = 3, qlines = 3)
-        self.question4 = Question(self, q4, alines = 3)
+        self.question1 = Question(self, q1, alines = 2, qlines = 3)
+        self.question2 = Question(self, q2, alines = 2)
+        self.question3 = Question(self, q3, alines = 2)
+        self.question3b = Measure(self, q3b, values = q3bvalues, questionPosition = "above",
+                                 left = "", right = "", labelPosition = "next")
+        self.question3b.question["font"] = "helvetica 15"
+        self.question4 = Question(self, q4, alines = 2)
         self.question5 = Measure(self, q5, values = q5values, questionPosition = "above",
                                  left = "", right = "", labelPosition = "next", filler = 550)
         self.question5.question.grid(column = 0, row = 0, columnspan = 2, pady = 6)
@@ -56,8 +62,9 @@ class Debriefing(ExperimentFrame):
         self.question1.grid(row = 1, column = 1)
         self.question2.grid(row = 2, column = 1)
         self.question3.grid(row = 3, column = 1)
-        self.question4.grid(row = 4, column = 1)
-        self.question5.grid(row = 5, column = 1)
+        self.question3b.grid(row = 4, column = 1)
+        self.question4.grid(row = 5, column = 1)
+        self.question5.grid(row = 6, column = 1)
         
         ttk.Style().configure("TButton", font = "helvetica 15")
         self.next = ttk.Button(self, text = "Pokračovat", command = self.nextFun)
@@ -84,7 +91,7 @@ class Debriefing(ExperimentFrame):
     def check(self):
         return self.question1.check() and self.question2.check() and \
                self.question3.check() and self.question4.check() and \
-               self.question5.answer.get()
+               self.question3b.answer.get() and self.question5.answer.get()
 
     def back(self):
         self.warning.config(foreground = "red")
@@ -96,6 +103,8 @@ class Debriefing(ExperimentFrame):
         self.question2.write(newline = False)
         self.file.write("\t")
         self.question3.write(newline = False)
+        self.file.write("\t")
+        self.question3b.write()
         self.file.write("\t")
         self.question4.write(newline = False)
         self.file.write("\t")
