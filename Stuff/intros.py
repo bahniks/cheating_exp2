@@ -33,7 +33,7 @@ V úloze s házením kostek byl náhodně vybrán blok {}. V úkolu s kostkou js
 
 Výsledky experimentu budou volně dostupné na stránkách PLESS a CEBEX, krátce po vyhodnocení dat a publikaci výsledků. Žádáme vás, abyste nesdělovali detaily této studie možným účastníkům, aby jejich volby a odpovědi nebyly ovlivněny a znehodnoceny.
   
-Můžete si vzít všechny svoje věci, papír s číslem vašeho místa a uvedenou odměnou, a bez toho, aniž byste rušili ostatní účastníky, se odeberte do vedlejší místnosti, kde obdržíte svoji odměnu. 
+Můžete vzít všechny svoje věci, papír s číslem vašeho místa a uvedenou odměnou, a, aniž byste rušili ostatní účastníky, se odeberte do vedlejší místnosti, kde obdržíte svoji odměnu. 
 
 Toto je konec experimentu. Děkujeme za vaši účast!
  
